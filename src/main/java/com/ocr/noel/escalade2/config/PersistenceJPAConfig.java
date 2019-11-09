@@ -42,7 +42,7 @@ public class PersistenceJPAConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan(new String[] {
+        entityManagerFactoryBean.setPackagesToScan(new String[]{
                 "com.ocr.noel.escalade2.entity"
         });
 
