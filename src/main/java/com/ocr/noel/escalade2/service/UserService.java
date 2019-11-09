@@ -32,4 +32,14 @@ public class UserService {
     public User findByIdFetchAddress(Long id) {
         return userRepository.findByIdFetchAddress(id).orElse(null);
     }
+
+    @Transactional
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
 }

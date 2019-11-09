@@ -23,13 +23,19 @@ public class HelloController {
     }*/
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(@RequestParam(required = false) String nom, ModelMap modelMap) {
+    public String index(@RequestParam(required = false) String nom,
+                        @RequestParam(required = false) String prenom,
+                        ModelMap modelMap) {
         /*The if code below is just for test : have to be delete in the future*/
         if (nom != null) {
             User user = new User();
             user.setLastName(nom);
+            user.setFirstName(prenom);
             Address address = new Address();
             address.setCity("paris");
+            address.setAddress("2 rue du mal de lattre de tassigny");
+            address.setCountry("FRANCE");
+            address.setZipcode("75001");
             user.setAddress(address);
             userService.save(user);
         }
