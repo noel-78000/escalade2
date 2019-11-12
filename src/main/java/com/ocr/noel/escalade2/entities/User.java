@@ -1,4 +1,4 @@
-package com.ocr.noel.escalade2.entity;
+package com.ocr.noel.escalade2.entities;
 
 import javax.persistence.*;
 

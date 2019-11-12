@@ -1,4 +1,4 @@
-package com.ocr.noel.escalade2.config;
+package com.ocr.noel.escalade2.configs;
 
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;

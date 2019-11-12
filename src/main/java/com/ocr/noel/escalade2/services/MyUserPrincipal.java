@@ -1,6 +1,6 @@
-package com.ocr.noel.escalade2.service;
+package com.ocr.noel.escalade2.services;
 
-import com.ocr.noel.escalade2.entity.User;
+import com.ocr.noel.escalade2.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;

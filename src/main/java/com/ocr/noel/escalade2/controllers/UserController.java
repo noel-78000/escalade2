@@ -1,7 +1,7 @@
-package com.ocr.noel.escalade2.controller;
+package com.ocr.noel.escalade2.controllers;
 
-import com.ocr.noel.escalade2.entity.User;
-import com.ocr.noel.escalade2.service.UserService;
+import com.ocr.noel.escalade2.entities.User;
+import com.ocr.noel.escalade2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

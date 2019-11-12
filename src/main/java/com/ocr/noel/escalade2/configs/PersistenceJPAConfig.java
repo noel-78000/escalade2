@@ -1,4 +1,4 @@
-package com.ocr.noel.escalade2.config;
+package com.ocr.noel.escalade2.configs;
 
 import java.util.Properties;
 
@@ -43,7 +43,7 @@ public class PersistenceJPAConfig {
         final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan(new String[]{
-                "com.ocr.noel.escalade2.entity"
+                "com.ocr.noel.escalade2.entities"
         });
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();

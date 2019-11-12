@@ -1,12 +1,11 @@
-package com.ocr.noel.escalade2.controller;
+package com.ocr.noel.escalade2.controllers;
 
-import com.ocr.noel.escalade2.entity.Address;
-import com.ocr.noel.escalade2.entity.User;
-import com.ocr.noel.escalade2.service.MyUserPrincipal;
-import com.ocr.noel.escalade2.service.UserService;
+import com.ocr.noel.escalade2.entities.Address;
+import com.ocr.noel.escalade2.entities.User;
+import com.ocr.noel.escalade2.services.MyUserPrincipal;
+import com.ocr.noel.escalade2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

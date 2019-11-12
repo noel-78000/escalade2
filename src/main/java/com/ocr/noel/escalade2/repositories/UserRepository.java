@@ -1,6 +1,6 @@
-package com.ocr.noel.escalade2.repository;
+package com.ocr.noel.escalade2.repositories;
 
-import com.ocr.noel.escalade2.entity.User;
+import com.ocr.noel.escalade2.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

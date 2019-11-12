@@ -1,6 +1,6 @@
-package com.ocr.noel.escalade2.config;
+package com.ocr.noel.escalade2.configs;
 
-import com.ocr.noel.escalade2.service.UserDetailsImplService;
+import com.ocr.noel.escalade2.services.UserDetailsImplService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

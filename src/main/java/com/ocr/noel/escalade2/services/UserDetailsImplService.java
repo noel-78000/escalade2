@@ -1,14 +1,12 @@
-package com.ocr.noel.escalade2.service;
+package com.ocr.noel.escalade2.services;
 
 
-import com.ocr.noel.escalade2.entity.User;
+import com.ocr.noel.escalade2.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
 //@Service
 public class UserDetailsImplService implements UserDetailsService {
