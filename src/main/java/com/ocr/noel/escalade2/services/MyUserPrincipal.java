@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.services;
 
 import com.ocr.noel.escalade2.entities.User;
+import com.ocr.noel.escalade2.enums.RoleEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,10 +27,10 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (user.getRole() == 2) {
-            return AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+        if (user.getRole() == RoleEnum.ROLE_ADMIN.getNum()) {
+            return AuthorityUtils.createAuthorityList(RoleEnum.ROLE_ADMIN.getName());
         }
-        return AuthorityUtils.createAuthorityList("ROLE_USER");
+        return AuthorityUtils.createAuthorityList(RoleEnum.ROLE_USER.getName());
     }
 
     @Override

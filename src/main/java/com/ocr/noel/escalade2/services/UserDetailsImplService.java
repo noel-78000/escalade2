@@ -20,21 +20,10 @@ public class UserDetailsImplService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-    /*Here we are using dummy data, you need to load user data from
-     database or other third party application*/
         User user = findUserbyUername(email);
 
         UserBuilder builder = null;
-        if (user != null) {
-            //builder = org.springframework.security.core.userdetails.User.withUsername(username);
-            //builder = org.springframework.security.core.userdetails.User.withUserDetails(new MyUserPrincipal(user));
-            //builder.password(new BCryptPasswordEncoder().encode(/*user.getPassword()*/"admin123"));
-//            if (user != null && user.getRole() == 2) {
-//                builder.roles("ADMIN");
-//            } else {
-//                builder.roles("USER");
-//            }
-        } else {
+        if (user == null) {
             throw new UsernameNotFoundException("User not found.");
         }
         return new MyUserPrincipal(user);
