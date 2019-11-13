@@ -1,0 +1,30 @@
+.menu {
+    border: 1px solid black;
+    float: left;
+    padding: 10px;
+    width: 15%;
+}
+
+.body {
+    float: left;
+    padding: 10px;
+    width: 80%;
+    border-left: 1px solid pink;
+}
+
+@media screen and (max-width: 800px) {
+    .menu {
+        border: none;
+        border-bottom: 1px solid black;
+        clear: both;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .body {
+        float: left;
+        padding: 10px;
+        width: 80%;
+        border: none;
+    }
+}

@@ -14,7 +14,7 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User findById(Long id) {
+    public User findById(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -25,16 +25,15 @@ public class UserService {
 
     public List<User> findAllUser() {
         List<User> users = userRepository.findAll();
-        System.out.println("dans findAllUser " + users.size());
         return users;
     }
 
-    public User findByIdFetchAddress(Long id) {
+    public User findByIdFetchAddress(Integer id) {
         return userRepository.findByIdFetchAddress(id).orElse(null);
     }
 
     @Transactional
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         userRepository.deleteById(id);
     }
 

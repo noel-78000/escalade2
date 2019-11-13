@@ -5,11 +5,11 @@ public enum RoleEnum {
     ROLE_USER(1, "ROLE_USER"),
     ROLE_ADMIN(2, "ROLE_ADMIN");
 
-    private int num;
+    private byte num;
     private String name;
 
     RoleEnum(int num, String name) {
-        this.num = num;
+        this.num = (byte) num;
         this.name = name;
     }
 
@@ -17,7 +17,7 @@ public enum RoleEnum {
         return name;
     }
 
-    public int getNum() {
+    public byte getNum() {
         return num;
     }
 

@@ -2,10 +2,10 @@ package com.ocr.noel.escalade2.controllers;
 
 import com.ocr.noel.escalade2.entities.Address;
 import com.ocr.noel.escalade2.entities.User;
-import com.ocr.noel.escalade2.services.MyUserPrincipal;
+import com.ocr.noel.escalade2.enums.RoleEnum;
 import com.ocr.noel.escalade2.services.UserService;
+import com.ocr.noel.escalade2.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,24 +26,22 @@ public class HelloController {
                         @RequestParam(required = false) String prenom,
                         ModelMap modelMap,
                         Principal principal) {
-        if (principal != null) {
-            User userDB = ((MyUserPrincipal) ((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
-            System.out.println(userDB.getEmail() + ", " + userDB.getPwd() + ", " + userDB.getAddress().getId());
-        }
+        User user = UserUtil.getUserFromPrincipal(principal);
         /*The if code below is just for test : have to be delete in the future*/
         if (nom != null) {
-            User user = new User();
-            user.setLastName(nom);
-            user.setFirstName(prenom);
-            user.setEmail("noel@yahoo.fr");
-            user.setPwd("1234");
+            User userTemp = new User();
+            userTemp.setLastName(nom);
+            userTemp.setFirstName(prenom);
+            userTemp.setEmail("user@yahoo.fr");
+            userTemp.setPwd("1234");
+            userTemp.setRole(RoleEnum.ROLE_USER.getNum());
             Address address = new Address();
             address.setCity("paris");
-            address.setAddress("2 rue du mal de lattre de tassigny");
+            address.setAddress("3 rue Leclerc");
             address.setCountry("FRANCE");
-            address.setZipcode("75001");
-            user.setAddress(address);
-            userService.save(user);
+            address.setZipcode("75002");
+            userTemp.setAddress(address);
+            userService.save(userTemp);
         }
         modelMap.addAttribute("message", "Hello spring mvc framework 1");
         return "hello";

@@ -1,11 +1,5 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<%@include file="entete.jsp" %>
+
 <h1>Veuillez vous loguer!</h1>
 <h2>${message}</h2>
 <form name="f" th:action="@{/login}" method="post">
@@ -22,5 +16,3 @@
         </div>
     </fieldset>
 </form>
-</body>
-</html>
