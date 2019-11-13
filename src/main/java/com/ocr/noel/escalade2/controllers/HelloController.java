@@ -3,6 +3,7 @@ package com.ocr.noel.escalade2.controllers;
 import com.ocr.noel.escalade2.entities.Address;
 import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.enums.RoleEnum;
+import com.ocr.noel.escalade2.services.SiteService;
 import com.ocr.noel.escalade2.services.UserService;
 import com.ocr.noel.escalade2.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class HelloController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    SiteService siteService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(@RequestParam(required = false) String nom,

@@ -34,3 +34,13 @@ CREATE TABLE `site` (
                         PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+DROP TABLE IF EXISTS `secteur`;
+CREATE TABLE `secteur` (
+                        `id` int(11) NOT NULL AUTO_INCREMENT,
+                        `nom` varchar(100) NOT NULL,
+                        `site_id` int(11) DEFAULT NULL,
+                        PRIMARY KEY (`id`),
+                        CONSTRAINT fk_site FOREIGN KEY (site_id) REFERENCES site(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

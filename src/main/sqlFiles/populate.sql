@@ -29,7 +29,17 @@ UNLOCK TABLES;
 
 LOCK TABLES `site` WRITE;
 INSERT INTO `site` VALUES (1,'togo', 'Saint Leu');
-INSERT INTO `site` VALUES (2,'ravine Bernica', ' Saint Pierre');
+INSERT INTO `site` VALUES (2,'ravine Bernica', 'Saint Pierre');
 INSERT INTO `site` VALUES (3,'Bassin plat', 'Le Tampon');
 INSERT INTO `site` VALUES (4, 'Ravine Grand étang', 'Piton saint Leu');
+UNLOCK TABLES;
+
+
+
+LOCK TABLES `secteur` WRITE;
+INSERT INTO `secteur` VALUES (1,'secteur 1', 1);
+INSERT INTO `secteur` VALUES (2,'secteur 2', 1);
+INSERT INTO `secteur` VALUES (3,'secteur 3', 1);
+INSERT INTO `secteur` VALUES (4,'secteur 4', 2);
+INSERT INTO `secteur` VALUES (5,'secteur 5', 2);
 UNLOCK TABLES;

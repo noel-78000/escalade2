@@ -1,6 +1,8 @@
 package com.ocr.noel.escalade2.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "site")
@@ -15,6 +17,13 @@ public class Site {
 
     @Column(length = 100)
     private String lieu;
+
+    @OneToMany(
+            mappedBy = "site",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Secteur> secteurs = new ArrayList<>();;
 
     public Integer getId() {
         return id;
@@ -38,5 +47,13 @@ public class Site {
 
     public void setLieu(String lieu) {
         this.lieu = lieu;
+    }
+
+    public List<Secteur> getSecteurs() {
+        return secteurs;
+    }
+
+    public void setSecteurs(List<Secteur> secteurs) {
+        this.secteurs = secteurs;
     }
 }
