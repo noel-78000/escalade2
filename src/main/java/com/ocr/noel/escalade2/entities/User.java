@@ -23,6 +23,9 @@ public class User {
     @Column(length = 100, nullable = false)
     private String pwd;
 
+    @Column(length = 10, nullable = true)
+    private String phonenumber;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
@@ -75,6 +78,14 @@ public class User {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public Byte getRole() {

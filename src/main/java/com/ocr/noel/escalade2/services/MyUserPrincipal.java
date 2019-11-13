@@ -27,10 +27,11 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (user.getRole() == RoleEnum.ROLE_ADMIN.getNum()) {
-            return AuthorityUtils.createAuthorityList(RoleEnum.ROLE_ADMIN.getName());
+        if (user.getRole() == RoleEnum.ROLE_ASSO.getNum()) {
+            return AuthorityUtils.createAuthorityList(RoleEnum.ROLE_ASSO.getName());
+        } else {
+            return AuthorityUtils.createAuthorityList(RoleEnum.ROLE_USER.getName());
         }
-        return AuthorityUtils.createAuthorityList(RoleEnum.ROLE_USER.getName());
     }
 
     @Override
