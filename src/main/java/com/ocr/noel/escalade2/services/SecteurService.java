@@ -37,4 +37,8 @@ public class SecteurService {
         secteur.setVoies(voies);
         return secteur;
     }
+
+    public Secteur findById(Integer id) {
+        return secteurRepository.findById(id).orElse(null);
+    }
 }

@@ -26,7 +26,7 @@ public class HelloController {
     @Autowired
     SiteService siteService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(@RequestParam(required = false) String nom,
                         @RequestParam(required = false) String prenom,
                         ModelMap modelMap,

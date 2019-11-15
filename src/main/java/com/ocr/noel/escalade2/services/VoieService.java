@@ -14,4 +14,8 @@ public class VoieService {
     public Voie findByIdFetchLongueur(Integer id) {
         return voieRepository.findByIdFetchLongueur(id).orElse(null);
     }
+
+    public Voie findById(Integer id) {
+        return voieRepository.findById(id).orElse(null);
+    }
 }

@@ -42,6 +42,10 @@ public class SiteService {
         return site;
     }
 
+    public Site findById(Integer id) {
+        return siteRepository.findById(id).orElse(null);
+    }
+
     @Transactional
     public void deleteById(Integer id) {
         siteRepository.deleteById(id);

@@ -3,6 +3,7 @@ package com.ocr.noel.escalade2.entities;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "secteur")
@@ -56,5 +57,18 @@ public class Secteur {
 
     public void setVoies(List<Voie> voies) {
         this.voies = voies;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Secteur secteur = (Secteur) o;
+        return Objects.equals(id, secteur.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom, site, voies);
     }
 }

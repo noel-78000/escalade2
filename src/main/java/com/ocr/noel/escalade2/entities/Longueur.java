@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "longueur")
@@ -39,5 +40,18 @@ public class Longueur {
 
     public void setVoie(Voie voie) {
         this.voie = voie;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Longueur longueur = (Longueur) o;
+        return Objects.equals(id, longueur.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cotation, voie);
     }
 }
