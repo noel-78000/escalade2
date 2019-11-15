@@ -28,7 +28,7 @@ public class UserDetailsImplService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found.");
         }
-        log.info("Nouvel utilisateur logué nom: {}, prénom: {}", user.getLastName(), user.getFirstName());
+        log.info("Nouvel utilisateur logué. Nom: {}, prénom: {}", user.getLastName(), user.getFirstName());
         return new MyUserPrincipal(user);
     }
 

@@ -4,7 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="entete.jsp" %>
 <p>List des utilisateurs</p>
 <c:forEach items="${userList}" var="user">
     <p> ${user.firstName} ${user.lastName} </p>

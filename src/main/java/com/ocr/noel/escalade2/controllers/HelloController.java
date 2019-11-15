@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @Controller
@@ -61,6 +62,13 @@ public class HelloController {
     public String login(ModelMap modelMap) {
         modelMap.addAttribute("message", "in logind form");
         return "login";
+    }
+
+    @RequestMapping(value = "appExceptionHandler")
+    public String appExceptionHandler(HttpServletRequest request, ModelMap modelMap) {
+        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
+        modelMap.addAttribute("message", String.format("Houps... page non disponible! code: %d", statusCode));
+        return "hello";
     }
 
 }
