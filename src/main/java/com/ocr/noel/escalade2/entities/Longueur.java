@@ -1,0 +1,43 @@
+package com.ocr.noel.escalade2.entities;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "longueur")
+public class Longueur {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(length = 100)
+    private String cotation;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "voie_id")
+    private Voie voie;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCotation() {
+        return cotation;
+    }
+
+    public void setCotation(String cotation) {
+        this.cotation = cotation;
+    }
+
+    public Voie getVoie() {
+        return voie;
+    }
+
+    public void setVoie(Voie voie) {
+        this.voie = voie;
+    }
+}

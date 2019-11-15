@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "site")
-public class Site {
+@Table(name = "voie")
+public class Voie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,15 +15,16 @@ public class Site {
     @Column(length = 100)
     private String nom;
 
-    @Column(length = 100)
-    private String lieu;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "secteur_id")
+    private Secteur secteur;
 
     @OneToMany(
-            mappedBy = "site",
+            mappedBy = "voie",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Secteur> secteurs = new ArrayList<>();
+    private List<Longueur> longueurs = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -41,19 +42,19 @@ public class Site {
         this.nom = nom;
     }
 
-    public String getLieu() {
-        return lieu;
+    public Secteur getSecteur() {
+        return secteur;
     }
 
-    public void setLieu(String lieu) {
-        this.lieu = lieu;
+    public void setSecteur(Secteur secteur) {
+        this.secteur = secteur;
     }
 
-    public List<Secteur> getSecteurs() {
-        return secteurs;
+    public List<Longueur> getLongueurs() {
+        return longueurs;
     }
 
-    public void setSecteurs(List<Secteur> secteurs) {
-        this.secteurs = secteurs;
+    public void setLongueurs(List<Longueur> longueurs) {
+        this.longueurs = longueurs;
     }
 }
