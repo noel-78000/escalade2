@@ -54,6 +54,10 @@ public class SiteService {
         return siteRepository.findStartWithLieu(lieu);
     }
 
+    public List<Site> findAll() {
+        return siteRepository.findAll();
+    }
+
     @Transactional
     public void deleteById(Integer id) {
         siteRepository.deleteById(id);

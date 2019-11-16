@@ -32,4 +32,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/searchhome.jsp" />
     </definition>
 
+    <definition name="searchsites" extends="base.definition">
+        <put-attribute name="title" value="Recherche sites" />
+        <put-attribute name="body" value="/WEB-INF/jsp/searchsites.jsp" />
+    </definition>
+
 </tiles-definitions>

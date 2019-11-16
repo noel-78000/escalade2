@@ -18,7 +18,7 @@
     </fieldset>
 </form>
 </c:if>
-<c:if test="${!empty rechecheinfructueuse}"><p>${rechecheinfructueuse}</p></c:if>
+<c:if test="${!empty rechercheinfructueuse}"><p>${rechercheinfructueuse}</p></c:if>
 <c:if test="${!empty sites}">
     <c:forEach items="${ sites }" var="site" varStatus="status">
         <p>N°<c:out value="${ status.count }" /> : <c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out></p>
@@ -30,6 +30,7 @@
                     cot: <c:out value="${ longueur.cotation }"></c:out>,
                 </c:forEach>
             </c:forEach>
+            <br/>
         </c:forEach>
         <br/>
     </c:forEach>
