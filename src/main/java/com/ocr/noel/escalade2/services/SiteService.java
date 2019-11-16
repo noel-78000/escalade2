@@ -46,6 +46,14 @@ public class SiteService {
         return siteRepository.findById(id).orElse(null);
     }
 
+    public List<Site> findByIdFetchSecteursCountSecteur(Integer count) {
+        return siteRepository.findByIdFetchSecteursCountSecteur(count);
+    }
+
+    public List<Site> findStartWithLieu(String lieu) {
+        return siteRepository.findStartWithLieu(lieu);
+    }
+
     @Transactional
     public void deleteById(Integer id) {
         siteRepository.deleteById(id);

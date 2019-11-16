@@ -1,5 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylessearch.css">
+<c:if test="${empty sites}">
 <form method="post" action="${pageContext.request.contextPath}/search">
     <fieldset>
         <legend>Recherche</legend>
@@ -16,9 +17,8 @@
         <input class="styled" type="submit" value="Rechercher">
     </fieldset>
 </form>
-
-<c:if test="${empty sites}">Aucun resultats
 </c:if>
+<c:if test="${!empty rechecheinfructueuse}"><p>${rechecheinfructueuse}</p></c:if>
 <c:if test="${!empty sites}">
     <c:forEach items="${ sites }" var="site" varStatus="status">
         <p>N°<c:out value="${ status.count }" /> : <c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out></p>
@@ -27,7 +27,7 @@
             <c:forEach items="${ secteur.voies }" var="voie">
                 <c:out value="${ voie.nom }" ></c:out>
                 <c:forEach items="${ voie.longueurs }" var="longueur">
-                    cot : <c:out value="${ longueur.cotation }"></c:out>
+                    cot: <c:out value="${ longueur.cotation }"></c:out>,
                 </c:forEach>
             </c:forEach>
         </c:forEach>

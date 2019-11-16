@@ -30,6 +30,7 @@ public class SearchController {
                          ModelMap modelMap) {
         List<Site> sites = searchService.search(lieu, nombredesecteurs, cotation);
         modelMap.addAttribute("sites", sites);
+        if (sites.size() == 0) modelMap.addAttribute("rechecheinfructueuse", "pas de résultat!");
         return "searchhome";
     }
 }

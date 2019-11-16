@@ -30,7 +30,7 @@ public class SearchService {
 
     public List<Site> search(String lieu, String nombredesecteurs, String cotation) {
         List<Site> sites = new ArrayList<>();
-        if (cotation != null) {
+        if (cotation != null && cotation.length() > 0) {
             List<Longueur> longueurs = longueurService.findStartWithCotation(cotation);
             longueurs.forEach(longueur -> {
                 Site site = findSiteForLongueur(longueur);
@@ -41,7 +41,14 @@ public class SearchService {
                 }
             });
         }
-        //TODO
+        if (nombredesecteurs != null && nombredesecteurs.length() > 0 && nombredesecteurs.matches("\\d+")) {
+            List<Site> ls = siteService.findByIdFetchSecteursCountSecteur(Integer.parseInt(nombredesecteurs));
+            ls.forEach(site -> addNewComponentInSite(sites, siteService.findByIdFetchSecteursFetchVoiesFetchLongueurs(site.getId())));
+        }
+        if (lieu != null && lieu.length() > 0) {
+            List<Site> ls = siteService.findStartWithLieu(lieu);
+            ls.forEach(site -> addNewComponentInSite(sites, siteService.findByIdFetchSecteursFetchVoiesFetchLongueurs(site.getId())));
+        }
         return sites;
     }
 
@@ -53,12 +60,12 @@ public class SearchService {
      */
     private void addNewComponentInSite(List<Site> sites, Site site) {
         AtomicBoolean siteAdded = new AtomicBoolean(false);
-        sites.forEach(s -> {
-            if (site.equals(s)) {
+        sites.forEach(site1 -> {
+            if (site.equals(site1)) {
                 siteAdded.set(true);
                 site.getSecteurs().forEach(newSecteur -> {
                     AtomicBoolean secteurAdded = new AtomicBoolean(false);
-                    s.getSecteurs().forEach(secteurList -> {
+                    site1.getSecteurs().forEach(secteurList -> {
                         if (newSecteur.equals(secteurList)) {
                             secteurAdded.set(true);
 
@@ -72,13 +79,13 @@ public class SearchService {
 
                                         AtomicBoolean longueurAdded = new AtomicBoolean(false);
                                         newVoie.getLongueurs().forEach(newLongeur -> {
-                                            voieList.getLongueurs().forEach( longueurList -> {
+                                            voieList.getLongueurs().forEach(longueurList -> {
                                                 if (newLongeur.equals(longueurList)) {
                                                     longueurAdded.set(true);
                                                 }
                                             });
                                             if (!longueurAdded.get()) {
-                                                voieList.getLongueurs().add(newLongeur);
+                                                voieList.setLongueurs(getNewListLongueurs(voieList.getLongueurs(), newLongeur));
                                             }
 
                                         });
@@ -86,13 +93,13 @@ public class SearchService {
                                     }
                                 });
                                 if (!voieAdded.get()) {
-                                    secteurList.getVoies().add(newVoie);
+                                    secteurList.setVoies(getNewListVoies(secteurList.getVoies(), newVoie));
                                 }
                             });
                         }
                     });
                     if (!secteurAdded.get()) {
-                        s.getSecteurs().add(newSecteur);
+                        site1.setSecteurs(getNewListSecteurs(site1.getSecteurs(), newSecteur));
                     }
                 });
 
@@ -101,6 +108,27 @@ public class SearchService {
         if (!siteAdded.get()) {
             sites.add(site);
         }
+    }
+
+    private List<Longueur> getNewListLongueurs(List<Longueur> longueurs, Longueur newLongeur) {
+        List<Longueur> list = new ArrayList<>();
+        if (longueurs != null) longueurs.forEach(longueur -> list.add(longueur));
+        list.add(newLongeur);
+        return list;
+    }
+
+    private List<Voie> getNewListVoies(List<Voie> voies, Voie newVoie) {
+        List<Voie> list = new ArrayList<>();
+        if (voies != null) voies.forEach(voie -> list.add(voie));
+        list.add(newVoie);
+        return list;
+    }
+
+    private List<Secteur> getNewListSecteurs(List<Secteur> secteurs, Secteur newSecteur) {
+        List<Secteur> list = new ArrayList<>();
+        if (secteurs != null) secteurs.forEach(secteur -> list.add(secteur));
+        list.add(newSecteur);
+        return list;
     }
 
     private Site findSiteForLongueur(Longueur longueur) {
