@@ -28,10 +28,10 @@ UNLOCK TABLES;
 
 
 LOCK TABLES `site` WRITE;
-INSERT INTO `site` VALUES (1, 'Togo', 'Saint Leu');
-INSERT INTO `site` VALUES (2, 'Ravine Bernica', 'Saint Pierre');
-INSERT INTO `site` VALUES (3, 'Bassin plat', 'Le Tampon');
-INSERT INTO `site` VALUES (4, 'Ravine grand étang', 'Piton Saint Leu');
+INSERT INTO `site` VALUES (1, 'Togo', 'Saint Leu', 0);
+INSERT INTO `site` VALUES (2, 'Ravine Bernica', 'Saint Pierre', 0);
+INSERT INTO `site` VALUES (3, 'Bassin plat', 'Le Tampon', 0);
+INSERT INTO `site` VALUES (4, 'Ravine grand étang', 'Piton Saint Leu', 0);
 UNLOCK TABLES;
 
 
@@ -67,4 +67,11 @@ INSERT INTO `longueur` VALUES (6,'4a', 5);
 INSERT INTO `longueur` VALUES (7,'8b', 6);
 INSERT INTO `longueur` VALUES (8,'3c', 7);
 INSERT INTO `longueur` VALUES (9,'6b', 8);
+UNLOCK TABLES;
+
+LOCK TABLES `commentaire` WRITE;
+INSERT INTO `commentaire` VALUES (1, 1, 1, '2019-11-18 10:00:00', 'Site difficile mais amusant');
+INSERT INTO `commentaire` VALUES (2, 2, 1, '2019-10-01 12:02:23', 'Site qui demande de l`entrainement');
+INSERT INTO `commentaire` VALUES (3, 3, 2, '2019-11-18 10:00:00', 'amusant');
+INSERT INTO `commentaire` VALUES (4, 4, 2, '2019-11-18 10:00:00', 'Site plus difficile qu`il n`y parait');
 UNLOCK TABLES;

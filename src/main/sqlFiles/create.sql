@@ -1,4 +1,8 @@
 ALTER TABLE `user` DROP INDEX `index_email`;
+
+DROP TABLE IF EXISTS `commentaire`;
+DROP TABLE IF EXISTS `topo_resa`;
+DROP TABLE IF EXISTS `topo`;
 DROP TABLE IF EXISTS `user`;
 
 DROP TABLE IF EXISTS `address`;
@@ -36,6 +40,7 @@ CREATE TABLE `site` (
                         `id` int(11) NOT NULL AUTO_INCREMENT,
                         `nom` varchar(100) NOT NULL,
                         `lieu` varchar(100) NOT NULL,
+                        `tag` tinyint(4) NOT NULL DEFAULT 0,
                         PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -71,6 +76,40 @@ CREATE TABLE `longueur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+DROP TABLE IF EXISTS `commentaire`;
+CREATE TABLE `commentaire` (
+                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `user_id` int(11) NOT NULL,
+                            `site_id` int(11) NOT NULL,
+                            `dt_creation` datetime NOT NULL,
+                            `commentaire` text NOT NULL,
+                            PRIMARY KEY (`id`),
+                            CONSTRAINT fk_commentaire_user FOREIGN KEY (user_id) REFERENCES `user`(id),
+                            CONSTRAINT fk_commentaire_site FOREIGN KEY (site_id) REFERENCES site(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `topo`;
+CREATE TABLE `topo` (
+                               `id` int(11) NOT NULL AUTO_INCREMENT,
+                               `user_id` int(11) NOT NULL,
+                               `dispo_resa` tinyint(4) NOT NULL DEFAULT 0,
+                               `dt_parution` datetime NOT NULL,
+                               `lieu` varchar(100) NOT NULL,
+                               `description` text NOT NULL,
+                               PRIMARY KEY (`id`),
+                               CONSTRAINT fk_topo_user FOREIGN KEY (user_id) REFERENCES user(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+DROP TABLE IF EXISTS `topo_resa`;
+CREATE TABLE `topo_resa` (
+                        `id` int(11) NOT NULL AUTO_INCREMENT,
+                        `user_id` int(11) NOT NULL,
+                        `topo_id` int(11) NOT NULL,
+                        `dt_creation` datetime NOT NULL,
+                        `accept_resa` tinyint(4) NOT NULL DEFAULT 0,
+                        PRIMARY KEY (`id`),
+                        CONSTRAINT fk_topo_resa_user FOREIGN KEY (user_id) REFERENCES user(id),
+                        CONSTRAINT fk_topo_resa_topo FOREIGN KEY (topo_id) REFERENCES topo(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

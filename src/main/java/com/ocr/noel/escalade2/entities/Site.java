@@ -19,6 +19,9 @@ public class Site {
     @Column(length = 100)
     private String lieu;
 
+    @Column(name = "tag")
+    private Boolean tag;
+
     @OneToMany(
             mappedBy = "site",
             cascade = CascadeType.ALL,
@@ -56,6 +59,14 @@ public class Site {
 
     public void setSecteurs(List<Secteur> secteurs) {
         this.secteurs = secteurs;
+    }
+
+    public Boolean getTag() {
+        return tag;
+    }
+
+    public void setTag(Boolean tag) {
+        this.tag = tag;
     }
 
     @Override

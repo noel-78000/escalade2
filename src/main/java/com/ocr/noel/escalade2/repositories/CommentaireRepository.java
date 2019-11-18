@@ -1,0 +1,16 @@
+package com.ocr.noel.escalade2.repositories;
+
+import com.ocr.noel.escalade2.entities.Commentaire;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface CommentaireRepository extends JpaRepository<Commentaire, Integer> {
+
+    @Query("SELECT c from Commentaire c LEFT JOIN  FETCH c.site LEFT JOIN FETCH c.user where c.id = :id")
+    Optional<Commentaire> findByIdFetchSiteFetchUser(@Param("id") Integer id);
+}
