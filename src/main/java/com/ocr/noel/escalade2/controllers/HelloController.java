@@ -5,6 +5,7 @@ import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.enums.RoleEnum;
 import com.ocr.noel.escalade2.services.SiteService;
 import com.ocr.noel.escalade2.services.UserService;
+import com.ocr.noel.escalade2.services.ValidateObjectService;
 import com.ocr.noel.escalade2.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+
+import javax.validation.Validator;
+//import org.springframework.validation.Validator;
+
 import java.security.Principal;
 
 @Controller
@@ -26,12 +31,26 @@ public class HelloController {
     @Autowired
     SiteService siteService;
 
+    @Autowired
+    Validator validator;
+
+    @Autowired
+    ValidateObjectService validateService;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(@RequestParam(required = false) String nom,
                         @RequestParam(required = false) String prenom,
                         ModelMap modelMap,
                         Principal principal) {
         User user = UserUtil.getUserFromPrincipal(principal);
+        User user1 = new User();
+        user1.setEmail("aaaa");
+        user1.setPhonenumber("bbbbb");
+        boolean error = validateService.validate(modelMap, user1);
+
+        System.out.println("error: " + error);
+
+
         /*The if code below is just for test : have to be delete in the future*/
         if (nom != null) {
             User userTemp = new User();

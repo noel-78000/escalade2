@@ -37,4 +37,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/searchsites.jsp" />
     </definition>
 
+    <definition name="registeruser" extends="base.definition">
+        <put-attribute name="title" value="S'enregister" />
+        <put-attribute name="body" value="/WEB-INF/jsp/registeruser.jsp" />
+    </definition>
+
 </tiles-definitions>

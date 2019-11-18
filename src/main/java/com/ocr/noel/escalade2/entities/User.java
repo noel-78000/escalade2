@@ -1,6 +1,11 @@
 package com.ocr.noel.escalade2.entities;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import com.ocr.noel.escalade2.validators.Email;
+import com.ocr.noel.escalade2.validators.Phone;
 
 @Entity
 @Table(name = "user")
@@ -17,12 +22,14 @@ public class User {
     @Column(length = 50)
     private String lastName;
 
+    @Email
     @Column(unique = true, length = 100, nullable = false)
     private String email;
 
     @Column(length = 100, nullable = false)
     private String pwd;
 
+    @Phone
     @Column(length = 10, nullable = true)
     private String phonenumber;
 

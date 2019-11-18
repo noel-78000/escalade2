@@ -9,6 +9,8 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
     <context:component-scan base-package="com.ocr.noel.escalade2" />
+    <!--Provide support for conversion, formatting and validation -->
+    <mvc:annotation-driven/>
 
 
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >

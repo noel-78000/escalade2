@@ -1,4 +1,5 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <h1>Veuillez vous loguer!</h1>
 <h2>${message}</h2>
