@@ -33,9 +33,7 @@ public class HomeController {
     ValidateObjectService validateService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(@RequestParam(required = false) String nom,
-                        @RequestParam(required = false) String prenom,
-                        ModelMap modelMap,
+    public String index(ModelMap modelMap,
                         Principal principal) {
         User user = UserUtil.getUserFromPrincipal(principal);
         modelMap.addAttribute("message", "Hello spring mvc framework 1");
@@ -43,8 +41,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/login")
-    public String login(ModelMap modelMap) {
-        modelMap.addAttribute("message", "in login form");
+    public String login() {
         return "login";
     }
 

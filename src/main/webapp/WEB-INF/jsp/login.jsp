@@ -1,8 +1,7 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<h1>Veuillez vous loguer!</h1>
-<h2>${message}</h2>
+<h3>Veuillez vous loguer!</h3>
 <form name="f" th:action="@{/login}" method="post">
     <fieldset>
         <legend>Please Login</legend>
