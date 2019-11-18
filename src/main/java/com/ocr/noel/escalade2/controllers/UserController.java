@@ -43,7 +43,7 @@ public class UserController {
         boolean isRegistered = userService.setNewUser(email, password, passwordconfirm, firstname, lastname, modelMap);
         if (isRegistered) {
             authWithHttpServletRequest(request, email, password);
-            return "hello";
+            return "home";
         }
         return "registeruser";
     }

@@ -1,9 +1,6 @@
 package com.ocr.noel.escalade2.controllers;
 
-import com.ocr.noel.escalade2.entities.Address;
 import com.ocr.noel.escalade2.entities.User;
-import com.ocr.noel.escalade2.enums.RoleEnum;
-import com.ocr.noel.escalade2.services.CommentaireService;
 import com.ocr.noel.escalade2.services.SiteService;
 import com.ocr.noel.escalade2.services.UserService;
 import com.ocr.noel.escalade2.services.ValidateObjectService;
@@ -16,15 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-
 import javax.validation.Validator;
-//import org.springframework.validation.Validator;
-
 import java.security.Principal;
 
 @Controller
 @RequestMapping("/")
-public class HelloController {
+public class HomeController {
 
     @Autowired
     UserService userService;
@@ -45,18 +39,12 @@ public class HelloController {
                         Principal principal) {
         User user = UserUtil.getUserFromPrincipal(principal);
         modelMap.addAttribute("message", "Hello spring mvc framework 1");
-        return "hello";
-    }
-
-    @RequestMapping(value = "/index2", method = RequestMethod.GET)
-    public String printHello2(ModelMap modelMap) {
-        modelMap.addAttribute("message", "Hello spring mvc framework 2");
-        return "hello";
+        return "home";
     }
 
     @RequestMapping(value = "/login")
     public String login(ModelMap modelMap) {
-        modelMap.addAttribute("message", "in logind form");
+        modelMap.addAttribute("message", "in login form");
         return "login";
     }
 
@@ -64,7 +52,7 @@ public class HelloController {
     public String appExceptionHandler(HttpServletRequest request, ModelMap modelMap) {
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
         modelMap.addAttribute("message", String.format("Houps... page non disponible! code: %d", statusCode));
-        return "hello";
+        return "home";
     }
 
 }
