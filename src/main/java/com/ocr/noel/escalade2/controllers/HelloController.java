@@ -44,30 +44,6 @@ public class HelloController {
                         ModelMap modelMap,
                         Principal principal) {
         User user = UserUtil.getUserFromPrincipal(principal);
-        User user1 = new User();
-        user1.setEmail("aaaa");
-        user1.setPhonenumber("bbbbb");
-        boolean error = validateService.validate(modelMap, user1);
-
-        System.out.println("error: " + error);
-
-
-        /*The if code below is just for test : have to be delete in the future*/
-        if (nom != null) {
-            User userTemp = new User();
-            userTemp.setLastName(nom);
-            userTemp.setFirstName(prenom);
-            userTemp.setEmail("user@yahoo.fr");
-            userTemp.setPwd("1234");
-            userTemp.setRole(RoleEnum.ROLE_USER.getNum());
-            Address address = new Address();
-            address.setCity("paris");
-            address.setAddress("3 rue Leclerc");
-            address.setCountry("FRANCE");
-            address.setZipcode("75002");
-            userTemp.setAddress(address);
-            userService.save(userTemp);
-        }
         modelMap.addAttribute("message", "Hello spring mvc framework 1");
         return "hello";
     }
