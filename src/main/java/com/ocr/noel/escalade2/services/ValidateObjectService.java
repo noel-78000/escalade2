@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 import javax.validation.Validator;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -18,20 +19,24 @@ public class ValidateObjectService {
     @Autowired
     Validator validator;
 
-    public boolean validate(ModelMap modelMap, Object object) {
-        log.info("dans ValidateObjectService");
-        AtomicBoolean errorRep = new AtomicBoolean(false);
+    /**
+     * Valide an Object from its annotations in package com.ocr.noel.validators
+     * @param object to analyze
+     * @return an empty map if any error, in otherwise a map with found errors
+     */
+    public Map<String, String> validate(Object object) {
+        log.debug("dans ValidateObjectService");
+        Map<String, String> mapError = new HashMap<>();
         if (object.getClass().equals(User.class)) {
             User user = (User) object;
             validator.validate(user).forEach(error -> {
-                errorRep.set(true);
                 String label =  (String) error.getConstraintDescriptor().getAttributes().get("label");
                 log.debug("label: {}", label);
                 String message = (String) error.getConstraintDescriptor().getAttributes().get("message");
                 log.debug("message: {}", message);
-                modelMap.addAttribute(label, message);
+                mapError.put(label, message);
             });
         }
-        return errorRep.get();
+        return mapError;
     }
 }

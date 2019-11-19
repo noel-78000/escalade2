@@ -21,7 +21,7 @@
 <c:if test="${!empty sites}">
     <c:forEach items="${ sites }" var="site" varStatus="status">
         <p>N°<c:out value="${ status.count }" /> : <c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out>
-            <a href="${pageContext.request.contextPath}/site/details?id=${site.id}">modifier</a> </p>
+            <a href="${pageContext.request.contextPath}/site/details?id=${site.id}"><span style="font-size: 0.8em">(modifier)</span></a> </p>
         <c:forEach items="${ site.secteurs }" var="secteur">
             <c:out value="${ secteur.nom }"></c:out>
             <c:forEach items="${ secteur.voies }" var="voie">

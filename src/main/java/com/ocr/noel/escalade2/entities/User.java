@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.entities;
 
 import com.ocr.noel.escalade2.validators.Email;
+import com.ocr.noel.escalade2.validators.Password;
 import com.ocr.noel.escalade2.validators.Phone;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class User {
     @Column(unique = true, length = 100, nullable = false)
     private String email;
 
+    @Password
     @Column(length = 100, nullable = false)
     private String pwd;
 

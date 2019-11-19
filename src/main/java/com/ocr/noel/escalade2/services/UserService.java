@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -71,8 +72,7 @@ public class UserService {
      * @return true if all is ok false otherwise
      */
     public boolean setNewUser(String email, String password, String passwordconfirm, String firstname, String lastname, ModelMap modelMap) {
-        User userExist = findByEmail(email);
-        if (userExist != null) {
+        if (isExistingEmail(email)) {
             modelMap.addAttribute("error", "l'utilisateur existe déjà!");
             return false;
         }
@@ -91,11 +91,18 @@ public class UserService {
         user.setFirstName(firstname);
         user.setLastName(lastname);
         user.setRole(RoleEnum.ROLE_USER.getNum());
-        boolean error = validateObjectService.validate(modelMap, user);
-        if (!error) {
+        Map<String, String> mapError = validateObjectService.validate(user);
+        if (mapError.size() == 0) {
             save(user);
             modelMap.addAttribute("message", "Enregistrement reussi");
             return true;
+        } else {
+            StringBuffer sb = new StringBuffer("enregistrement non approuvé");
+            mapError.forEach((k, v) -> {
+                sb.append(", ");
+                sb.append(v);
+            });
+            modelMap.addAttribute("error", sb.toString());
         }
         return false;
     }
@@ -140,14 +147,15 @@ public class UserService {
         if (password != null && password.length() > 0) {
             if (password.length() <= 100 && password.equals(passwordconfirm)) {
                 user.setPwd(password);
-            } else  {
+            } else {
                 modelMap.addAttribute("passworderror", "erreur");
+                isOk = false;
             }
         }
         if (firstname != null && firstname.length() > 0 && firstname.length() <= 50) user.setFirstName(firstname);
         if (lastname != null && lastname.length() > 0 && lastname.length() <= 50) user.setLastName(lastname);
         if (phonenumber != null && phonenumber.length() > 0) {
-            phonenumber = phonenumber.replace(" ", "").replace(".","").replace("-","");
+            phonenumber = phonenumber.replace(" ", "").replace(".", "").replace("-", "");
             if (phonenumber.length() <= 10) user.setPhonenumber(phonenumber);
         }
         if (user.getAddress() == null) {
@@ -157,8 +165,14 @@ public class UserService {
         if (city != null && city.length() > 0 && city.length() <= 50) user.getAddress().setCity(city);
         if (zipcode != null && zipcode.length() > 0 && zipcode.length() <= 5) user.getAddress().setZipcode(zipcode);
         if (country != null && country.length() > 0 && country.length() <= 50) user.getAddress().setCountry(country);
-        save(user);
-        getHtmlFormMonCompte(principal, modelMap);
+        Map<String, String> mapError = validateObjectService.validate(user);
+        if (mapError.size() == 0) {
+            save(user);
+            getHtmlFormMonCompte(principal, modelMap);
+        } else {
+            getHtmlFormMonCompte(principal, modelMap);
+            return false;
+        }
         return isOk;
     }
 }

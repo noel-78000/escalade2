@@ -47,4 +47,14 @@
         <put-attribute name="body" value="/WEB-INF/jsp/moncompte.jsp" />
     </definition>
 
+    <definition name="sitedetails" extends="base.definition">
+        <put-attribute name="title" value="Détails du site" />
+        <put-attribute name="body" value="/WEB-INF/jsp/sitedetails.jsp" />
+    </definition>
+
+    <definition name="sitechange" extends="base.definition">
+        <put-attribute name="title" value="Modification du site" />
+        <put-attribute name="body" value="/WEB-INF/jsp/sitechange.jsp" />
+    </definition>
+
 </tiles-definitions>

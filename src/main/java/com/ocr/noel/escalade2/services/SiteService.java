@@ -67,4 +67,20 @@ public class SiteService {
     public void delete(Site site) {
         siteRepository.delete(site);
     }
+
+    @Transactional
+    public void save(Site site) {
+        siteRepository.save(site);
+    }
+
+    public boolean updateSite(Integer id, String lieu, String nom) {
+        Site site = findById(id);
+        if (site == null) {
+            return false;
+        }
+        if (lieu != null && lieu.length() > 0) site.setLieu(lieu);
+        if (nom != null && nom.length() > 0) site.setNom(nom);
+        save(site);
+        return true;
+    }
 }
