@@ -1,7 +1,6 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<h1>Veuillez vous inscrire!</h1>
+<h3>Veuillez vous inscrire!</h3>
 <h2>${message}</h2>
 <form name="f" th:action="@{/registeruser}" method="post">
     <fieldset>
@@ -17,7 +16,7 @@
         <label for="lastname">Nom</label>
         <input type="text" id="lastname" name="lastname"/><br/>
         <div class="form-actions">
-            <button type="submit" class="btn">Log in</button>
+            <button type="submit" class="boutonStyled">Log in</button>
         </div>
     </fieldset>
 </form>

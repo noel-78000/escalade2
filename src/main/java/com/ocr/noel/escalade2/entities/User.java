@@ -1,18 +1,15 @@
 package com.ocr.noel.escalade2.entities;
 
-import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 import com.ocr.noel.escalade2.validators.Email;
 import com.ocr.noel.escalade2.validators.Phone;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
 public class User {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

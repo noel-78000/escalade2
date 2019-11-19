@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -46,6 +47,34 @@ public class UserController {
             return "home";
         }
         return "registeruser";
+    }
+
+    @RequestMapping(value = "/moncompte", method = RequestMethod.GET)
+    public String monCompte(Principal principal, ModelMap modelMap) {
+        userService.getHtmlFormMonCompte(principal, modelMap);
+        return "moncompte";
+    }
+
+    @RequestMapping(value = "/moncompte", method = RequestMethod.POST)
+    public String monCompteRenew(@RequestParam(required = true) String email,
+                                 @RequestParam(required = false) String password,
+                                 @RequestParam(required = false) String passwordconfirm,
+                                 @RequestParam(required = false) String firstname,
+                                 @RequestParam(required = false) String lastname,
+                                 @RequestParam(required = false) String phonenumber,
+                                 @RequestParam(required = false) String address,
+                                 @RequestParam(required = false) String city,
+                                 @RequestParam(required = false) String zipcode,
+                                 @RequestParam(required = false) String country,
+                                 Principal principal, ModelMap modelMap) {
+        boolean registrationOK = userService.updateUserInformation(email, password, passwordconfirm, firstname, lastname,
+                phonenumber, address, city, zipcode, country, principal, modelMap);
+        if (registrationOK) {
+            modelMap.addAttribute("message", "enregistrement ok");
+        } else {
+            modelMap.addAttribute("error", "pb durant l'enregistrement");
+        }
+        return "moncompte";
     }
 
     public void authWithHttpServletRequest(HttpServletRequest request, String username, String password) {

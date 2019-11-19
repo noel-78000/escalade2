@@ -42,4 +42,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/registeruser.jsp" />
     </definition>
 
+    <definition name="moncompte" extends="base.definition">
+        <put-attribute name="title" value="Mon compte" />
+        <put-attribute name="body" value="/WEB-INF/jsp/moncompte.jsp" />
+    </definition>
+
 </tiles-definitions>

@@ -1,20 +1,16 @@
 package com.ocr.noel.escalade2.controllers;
 
-import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.services.SiteService;
 import com.ocr.noel.escalade2.services.UserService;
 import com.ocr.noel.escalade2.services.ValidateObjectService;
-import com.ocr.noel.escalade2.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Validator;
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/")
@@ -33,10 +29,8 @@ public class HomeController {
     ValidateObjectService validateService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(ModelMap modelMap,
-                        Principal principal) {
-        User user = UserUtil.getUserFromPrincipal(principal);
-        modelMap.addAttribute("message", "Hello spring mvc framework 1");
+    public String index(ModelMap modelMap) {
+        modelMap.addAttribute("message", "Hello amis de l'escalade");
         return "home";
     }
 

@@ -6,6 +6,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesLayout.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesgeneral.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesbutton.css">
     <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
 <body>

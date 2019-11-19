@@ -22,7 +22,7 @@ public class UserDetailsImplService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        User user = findUserbyUername(email);
+        User user = findUserbyUsername(email);
 
         UserBuilder builder = null;
         if (user == null) {
@@ -32,7 +32,7 @@ public class UserDetailsImplService implements UserDetailsService {
         return new MyUserPrincipal(user);
     }
 
-    private User findUserbyUername(String email) {
+    private User findUserbyUsername(String email) {
         return userService.findByEmail(email);
     }
 }

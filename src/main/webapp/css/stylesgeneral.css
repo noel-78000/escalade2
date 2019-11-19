@@ -1,13 +1,18 @@
-.centerBloc
-{
+.centerBloc {
     overflow: no-display;
     word-wrap: break-word;
     margin: auto;
     text-align: center;
 }
+.showOnPhoneOnly {
+    display: none;
+}
 
 @media screen and (max-width: 800px) {
     .hideOnPhone{
         display: none;
+    }
+    .showOnPhoneOnly {
+        display: block;
     }
 }
