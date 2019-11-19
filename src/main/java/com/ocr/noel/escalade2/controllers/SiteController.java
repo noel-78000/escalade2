@@ -28,18 +28,18 @@ public class SiteController {
     }
 
     @RequestMapping(value = "/change", method = RequestMethod.GET)
-    public String seeAttibuts(@RequestParam("id") Integer id, ModelMap modelMap) {
+    public String seeAttributes(@RequestParam("id") Integer id, ModelMap modelMap) {
         Site site = siteService.findById(id);
         modelMap.addAttribute("site", site);
         return "sitechange";
     }
     // lieu nom
     @RequestMapping(value = "/change", method = RequestMethod.POST)
-    public String changeAttributs(@RequestParam(value = "id", required = true) Integer id,
-                                  @RequestParam(value = "lieu", required = true) String lieu,
-                                  @RequestParam(value = "nom", required = true) String nom,
-                                  HttpServletRequest request,
-                                  ModelMap modelMap) {
+    public String changeAttributes(@RequestParam(value = "id", required = true) Integer id,
+                                   @RequestParam(value = "lieu", required = true) String lieu,
+                                   @RequestParam(value = "nom", required = true) String nom,
+                                   HttpServletRequest request,
+                                   ModelMap modelMap) {
         boolean isOK = siteService.updateSite(id, lieu, nom);
         if (isOK) {
             String redirectUrl = "/site/details?id=" + id;

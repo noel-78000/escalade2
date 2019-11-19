@@ -7,15 +7,15 @@
         </a>
     </p>
     <c:forEach items="${ site.secteurs }" var="secteur">
-        <a href="${pageContext.request.contextPath}/secteur/change?id=${secteur.id}&siteId=${site.id}">
+        <a href="${pageContext.request.contextPath}/secteur/change?id=${secteur.id}&siteid=${site.id}">
             <c:out value="${ secteur.nom }"></c:out>
         </a>,
         <c:forEach items="${ secteur.voies }" var="voie">
-            <a href="${pageContext.request.contextPath}/voie/change?id=${voie.id}&siteId=${site.id}">
+            <a href="${pageContext.request.contextPath}/voie/change?id=${voie.id}&siteid=${site.id}">
                 <c:out value="${ voie.nom }" ></c:out>
             </a>,
             <c:forEach items="${ voie.longueurs }" var="longueur">
-                <a href="${pageContext.request.contextPath}/longueur/change?id=${longueur.id}&siteId=${site.id}">
+                <a href="${pageContext.request.contextPath}/longueur/change?id=${longueur.id}&siteid=${site.id}">
                 cot: <c:out value="${ longueur.cotation }"></c:out>
                 </a>,
             </c:forEach>

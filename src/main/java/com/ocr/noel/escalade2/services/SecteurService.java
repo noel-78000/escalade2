@@ -5,6 +5,7 @@ import com.ocr.noel.escalade2.entities.Voie;
 import com.ocr.noel.escalade2.repositories.SecteurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,11 @@ public class SecteurService {
 
     public Secteur findByIdFetchVoies(Integer id) {
         return secteurRepository.findByIdFetchVoies(id).orElse(null);
+    }
+
+    @Transactional
+    public void save(Secteur secteur) {
+        secteurRepository.save(secteur);
     }
 
     public Secteur findByIdFetchVoiesFetchLongueurs(Integer id) {
@@ -40,5 +46,15 @@ public class SecteurService {
 
     public Secteur findById(Integer id) {
         return secteurRepository.findById(id).orElse(null);
+    }
+
+    public boolean updateSecteur(Integer id, String nom) {
+        Secteur secteur = findById(id);
+        if (nom != null && nom.length() > 0 && nom.length() <= 100) {
+            secteur.setNom(nom);
+            save(secteur);
+            return true;
+        }
+        return false;
     }
 }
