@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<c:if test="${empty sites}">
 <form method="post" action="${pageContext.request.contextPath}/search">
     <fieldset>
         <legend>Recherche</legend>
@@ -16,9 +15,9 @@
         <input class="boutonStyled" type="submit" value="Rechercher">
     </fieldset>
 </form>
-</c:if>
 <c:if test="${!empty rechercheinfructueuse}"><p>${rechercheinfructueuse}</p></c:if>
 <c:if test="${!empty sites}">
+    <hr/>
     <c:forEach items="${ sites }" var="site" varStatus="status">
         <p>N°<c:out value="${ status.count }" /> : <c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out>
             <a href="${pageContext.request.contextPath}/site/details?id=${site.id}"><span style="font-size: 0.8em">(modifier)</span></a> </p>
@@ -34,4 +33,7 @@
         </c:forEach>
         <br/>
     </c:forEach>
+    <form method="get" action="${pageContext.request.contextPath}/site/add">
+        <input class="boutonStyled" type="submit" value="Ajouter un nouveau site">
+    </form>
 </c:if>

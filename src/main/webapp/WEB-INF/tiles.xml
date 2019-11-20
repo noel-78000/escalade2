@@ -62,4 +62,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/secteurchange.jsp" />
     </definition>
 
+    <definition name="addnewsite" extends="base.definition">
+        <put-attribute name="title" value="Ajouter un nouveau site" />
+        <put-attribute name="body" value="/WEB-INF/jsp/addnewsite.jsp" />
+    </definition>
+
 </tiles-definitions>

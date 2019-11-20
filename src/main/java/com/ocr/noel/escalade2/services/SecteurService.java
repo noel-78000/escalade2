@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.services;
 
 import com.ocr.noel.escalade2.entities.Secteur;
+import com.ocr.noel.escalade2.entities.Site;
 import com.ocr.noel.escalade2.entities.Voie;
 import com.ocr.noel.escalade2.repositories.SecteurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class SecteurService {
 
     @Autowired
     SecteurRepository secteurRepository;
+
+    @Autowired
+    SiteService siteService;
 
     @Autowired
     VoieService voieService;
@@ -56,5 +60,22 @@ public class SecteurService {
             return true;
         }
         return false;
+    }
+
+    public boolean add(String nom, Integer siteId) {
+        Secteur secteur = new Secteur();
+        Site site = siteService.findById(siteId);
+        if (site != null && nom != null && nom.length() > 0 && nom.length() <= 100) {
+            secteur.setNom(nom);
+            secteur.setSite(site);
+            secteurRepository.save(secteur);
+            return true;
+        }
+        return false;
+    }
+
+    @Transactional
+    public void deleteById(Integer id) {
+        secteurRepository.deleteById(id);
     }
 }

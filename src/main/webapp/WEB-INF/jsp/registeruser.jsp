@@ -14,7 +14,7 @@
         <label for="firstname">Prénom</label>
         <input type="text" id="firstname" name="firstname"/><br/>
         <label for="lastname">Nom</label>
-        <input type="text" id="lastname" name="lastname"/><br/>
+        <input type="text" id="lastname" name="lastname" value="${param.lastname}"/><br/>
         <div class="form-actions">
             <button type="submit" class="boutonStyled">Log in</button>
         </div>

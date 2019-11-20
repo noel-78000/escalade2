@@ -33,11 +33,11 @@ public class SiteController {
         modelMap.addAttribute("site", site);
         return "sitechange";
     }
-    // lieu nom
+
     @RequestMapping(value = "/change", method = RequestMethod.POST)
-    public String changeAttributes(@RequestParam(value = "id", required = true) Integer id,
-                                   @RequestParam(value = "lieu", required = true) String lieu,
-                                   @RequestParam(value = "nom", required = true) String nom,
+    public String changeAttributes(@RequestParam(value = "id") Integer id,
+                                   @RequestParam(value = "lieu") String lieu,
+                                   @RequestParam(value = "nom") String nom,
                                    HttpServletRequest request,
                                    ModelMap modelMap) {
         boolean isOK = siteService.updateSite(id, lieu, nom);
@@ -48,7 +48,25 @@ public class SiteController {
             modelMap.addAttribute("error", "Erreur de saisie");
             return "sitechange";
         }
-
     }
 
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String add() {
+        return "addnewsite";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addNew(@RequestParam(value = "lieu") String lieu,
+                         @RequestParam(value = "nom") String nom,
+                         HttpServletRequest request,
+                         ModelMap modelMap) {
+        Site site = siteService.add(lieu, nom);
+        if (site != null) {
+            String redirectUrl = "/site/details?id=" + site.getId();
+            return "redirect:" + redirectUrl;
+        } else {
+            modelMap.addAttribute("error", "Erreur, le site n'a pas été créé");
+            return "addnewsite";
+        }
+    }
 }

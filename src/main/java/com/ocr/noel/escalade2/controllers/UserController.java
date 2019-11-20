@@ -1,8 +1,11 @@
 package com.ocr.noel.escalade2.controllers;
 
 import com.ocr.noel.escalade2.entities.User;
+import com.ocr.noel.escalade2.services.MessageSourceService;
 import com.ocr.noel.escalade2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +23,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    MessageSourceService messageSourceService;
 
     @RequestMapping(value = "/list")
     public String list(ModelMap modelMap) {
@@ -70,9 +76,9 @@ public class UserController {
         boolean registrationOK = userService.updateUserInformation(email, password, passwordconfirm, firstname, lastname,
                 phonenumber, address, city, zipcode, country, principal, modelMap);
         if (registrationOK) {
-            modelMap.addAttribute("message", "enregistrement ok");
+            modelMap.addAttribute("message", messageSourceService.getMessage("registration.ok"));
         } else {
-            modelMap.addAttribute("error", "pb durant l'enregistrement");
+            modelMap.addAttribute("error", messageSourceService.getMessage("registration.nok"));
         }
         return "moncompte";
     }

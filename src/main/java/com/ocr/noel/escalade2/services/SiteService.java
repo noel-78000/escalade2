@@ -83,4 +83,13 @@ public class SiteService {
         save(site);
         return true;
     }
+
+    @Transactional
+    public Site add(String lieu, String nom) {
+        Site site = new Site();
+        site.setLieu(lieu);
+        site.setNom(nom);
+        site.setTag(false);
+        return siteRepository.save(site);
+    }
 }

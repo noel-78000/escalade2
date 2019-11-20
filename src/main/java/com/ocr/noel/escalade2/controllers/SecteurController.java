@@ -42,4 +42,28 @@ public class SecteurController {
             return "secteurchange";
         }
     }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add(@RequestParam(value = "siteid") Integer siteId,
+                      @RequestParam(value = "nom") String nom,
+                      ModelMap modelMap) {
+        boolean isOK = secteurService.add(nom, siteId);
+        if (isOK) {
+            String redirectUrl = "/site/details?id=" + siteId;
+            return "redirect:" + redirectUrl;
+        } else {
+            modelMap.addAttribute("errorsecteur", "Erreur de saisie de secteur");
+            modelMap.addAttribute("siteid", siteId);
+            return "sitechange";
+        }
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String delete(@RequestParam(value = "id") Integer id,
+                         @RequestParam(value = "siteid") Integer siteId,
+                         ModelMap modelMap) {
+        secteurService.deleteById(id);
+        String redirectUrl = "/site/details?id=" + siteId;
+        return "redirect:" + redirectUrl;
+    }
 }
