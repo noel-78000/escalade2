@@ -4,8 +4,6 @@ import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.services.MessageSourceService;
 import com.ocr.noel.escalade2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

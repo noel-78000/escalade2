@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.controllers;
 
 import com.ocr.noel.escalade2.entities.Secteur;
+import com.ocr.noel.escalade2.services.MessageSourceService;
 import com.ocr.noel.escalade2.services.SecteurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,13 @@ public class SecteurController {
     @Autowired
     SecteurService secteurService;
 
+    @Autowired
+    MessageSourceService messageSourceService;
+
     @RequestMapping(value = "/change", method = RequestMethod.GET)
     public String seeAttributes(@RequestParam("id") Integer id,
-                      @RequestParam("siteid") Integer siteId,
-                      ModelMap modelMap) {
+                                @RequestParam("siteid") Integer siteId,
+                                ModelMap modelMap) {
         Secteur secteur = secteurService.findById(id);
         modelMap.addAttribute("secteur", secteur);
         modelMap.addAttribute("siteid", siteId);
@@ -28,15 +32,15 @@ public class SecteurController {
 
     @RequestMapping(value = "/change", method = RequestMethod.POST)
     public String changeAttributes(@RequestParam(value = "id") Integer id,
-                             @RequestParam(value = "siteid") Integer siteId,
-                             @RequestParam(value = "nom") String nom,
-                             ModelMap modelMap) {
+                                   @RequestParam(value = "siteid") Integer siteId,
+                                   @RequestParam(value = "nom") String nom,
+                                   ModelMap modelMap) {
         boolean isOK = secteurService.updateSecteur(id, nom);
         if (isOK) {
             String redirectUrl = "/site/details?id=" + siteId;
             return "redirect:" + redirectUrl;
         } else {
-            modelMap.addAttribute("error", "Erreur de saisie");
+            modelMap.addAttribute("error", messageSourceService.getMessage("error.tying"));
             modelMap.addAttribute("secteur", secteurService.findById(id));
             modelMap.addAttribute("siteid", siteId);
             return "secteurchange";
@@ -52,7 +56,7 @@ public class SecteurController {
             String redirectUrl = "/site/details?id=" + siteId;
             return "redirect:" + redirectUrl;
         } else {
-            modelMap.addAttribute("errorsecteur", "Erreur de saisie de secteur");
+            modelMap.addAttribute("errorsecteur", messageSourceService.getMessage("error.secteur.tying"));
             modelMap.addAttribute("siteid", siteId);
             return "sitechange";
         }

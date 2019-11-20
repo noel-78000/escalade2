@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.controllers;
 
 import com.ocr.noel.escalade2.entities.Site;
+import com.ocr.noel.escalade2.services.MessageSourceService;
 import com.ocr.noel.escalade2.services.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class SiteController {
 
     @Autowired
     SiteService siteService;
+
+    @Autowired
+    MessageSourceService messageSourceService;
 
     @RequestMapping(value = "/details", method = RequestMethod.GET)
     public String details(@RequestParam(required = true) Integer id, ModelMap modelMap) {
@@ -45,7 +49,7 @@ public class SiteController {
             String redirectUrl = "/site/details?id=" + id;
             return "redirect:" + redirectUrl;
         } else {
-            modelMap.addAttribute("error", "Erreur de saisie");
+            modelMap.addAttribute("error", messageSourceService.getMessage("error.tying"));
             return "sitechange";
         }
     }
@@ -65,7 +69,7 @@ public class SiteController {
             String redirectUrl = "/site/details?id=" + site.getId();
             return "redirect:" + redirectUrl;
         } else {
-            modelMap.addAttribute("error", "Erreur, le site n'a pas été créé");
+            modelMap.addAttribute("error", messageSourceService.getMessage("error.create.site"));
             return "addnewsite";
         }
     }
