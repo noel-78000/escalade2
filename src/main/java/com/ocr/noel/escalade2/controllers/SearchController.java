@@ -27,7 +27,9 @@ public class SearchController {
     MessageSourceService messageSourceService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String searchHomePage() {
+    public String searchHomePage(ModelMap modelMap) {
+        List<Site> sites = siteService.findAll();
+        modelMap.addAttribute("sitessommaire", sites);
         return "searchhome";
     }
 
@@ -40,13 +42,6 @@ public class SearchController {
         modelMap.addAttribute("sites", sites);
         if (sites.size() == 0) modelMap.addAttribute("rechercheinfructueuse", messageSourceService.getMessage("recherche.infructueuse"));
         return "searchhome";
-    }
-
-    @RequestMapping(value = "listsites", method = RequestMethod.GET)
-    public String listSites(ModelMap modelMap) {
-        List<Site> sites = siteService.findAll();
-        modelMap.addAttribute("sites", sites);
-        return "searchsites";
     }
 
     @RequestMapping(value = "site", method = RequestMethod.GET)

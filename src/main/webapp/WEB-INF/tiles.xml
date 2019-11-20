@@ -29,12 +29,12 @@
 
     <definition name="searchhome" extends="base.definition">
         <put-attribute name="title" value="Recherche" />
-        <put-attribute name="body" value="/WEB-INF/jsp/searchhome.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/search/searchhome.jsp" />
     </definition>
 
     <definition name="searchsites" extends="base.definition">
         <put-attribute name="title" value="Recherche sites" />
-        <put-attribute name="body" value="/WEB-INF/jsp/searchsites.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/search/searchsites.jsp" />
     </definition>
 
     <definition name="registeruser" extends="base.definition">

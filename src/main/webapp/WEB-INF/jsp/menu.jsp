@@ -6,7 +6,6 @@
         <li><a href="${pageContext.request.contextPath}/logout">Se déconnecter</a> </li>
         <li><a href="${pageContext.request.contextPath}/user/list">Liste des utilisateurs</a> </li>
         <li><a href="${pageContext.request.contextPath}/search">Rechercher & modifer</a> </li>
-        <li><a href="${pageContext.request.contextPath}/search/listsites">List des sites</a> </li>
         <li><a href="${pageContext.request.contextPath}/user/registeruser">S'enregistrer</a></li>
         <li><a href="${pageContext.request.contextPath}/user/moncompte">Mon compte</a></li>
     </ul>
