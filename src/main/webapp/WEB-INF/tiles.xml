@@ -72,4 +72,14 @@
         <put-attribute name="body" value="/WEB-INF/jsp/secteur/secteurchange.jsp" />
     </definition>
 
+    <definition name="voiechange" extends="base.definition">
+        <put-attribute name="title" value="Modification du voie" />
+        <put-attribute name="body" value="/WEB-INF/jsp/voie/voiechange.jsp" />
+    </definition>
+
+    <definition name="addnewvoie" extends="base.definition">
+        <put-attribute name="title" value="Ajouter du voie" />
+        <put-attribute name="body" value="/WEB-INF/jsp/voie/addnewvoie.jsp" />
+    </definition>
+
 </tiles-definitions>
