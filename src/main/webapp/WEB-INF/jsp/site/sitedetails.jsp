@@ -4,6 +4,7 @@
     <p>
         <a href="${pageContext.request.contextPath}/site/change?id=${site.id}">
             <c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out>
+            <c:if test="${site.tag}"><img src="${pageContext.request.contextPath}/img/logoTag.png"/></c:if>
         </a>
     </p>
     <c:forEach items="${ site.secteurs }" var="secteur">
