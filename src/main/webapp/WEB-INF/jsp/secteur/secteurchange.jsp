@@ -15,11 +15,11 @@
         </table>
 
         <input formaction="${pageContext.request.contextPath}/secteur/change"
-               class="boutonStyled" type="submit" value="Enregistrer" />
+               class="boutonStyled" type="submit" value="<spring:message code="button.submit.record"/>" />
         <input formaction="${pageContext.request.contextPath}/secteur/delete"
-               class="boutonStyled" type="submit" value="Supprimer" />
-        <input formaction="${pageContext.request.contextPath}/voie/add"
-               class="boutonStyled" type="submit" value="Ajouter une voie" />
+               class="boutonStyled" type="submit" value="<spring:message code="button.submit.delete"/>" />
+        <input formaction="${pageContext.request.contextPath}/voie/add" formmethod="get"
+               class="boutonStyled" type="submit" value="<spring:message code="button.submit.add.voie"/>" />
     </fieldset>
     </form>
     <c:if test="${!empty error}"><p style="color: red">${error}</p></c:if>

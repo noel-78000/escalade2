@@ -28,9 +28,9 @@ UNLOCK TABLES;
 
 
 LOCK TABLES `site` WRITE;
-INSERT INTO `site` VALUES (1, 'Togo', 'Saint Leu', 0);
+INSERT INTO `site` VALUES (1, 'Togo', 'Saint Leu', 1);
 INSERT INTO `site` VALUES (2, 'Ravine Bernica', 'Saint Pierre', 0);
-INSERT INTO `site` VALUES (3, 'Bassin plat', 'Le Tampon', 0);
+INSERT INTO `site` VALUES (3, 'Bassin plat', 'Le Tampon', 1);
 INSERT INTO `site` VALUES (4, 'Ravine grand étang', 'Piton Saint Leu', 0);
 UNLOCK TABLES;
 

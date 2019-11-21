@@ -4,12 +4,12 @@
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
     <definition name="base.definition"
-                template="/WEB-INF/jsp/layout.jsp">
+                template="/WEB-INF/jsp/layout/layout.jsp">
         <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp" />
         <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
     </definition>
 
     <definition name="home" extends="base.definition">
@@ -49,22 +49,27 @@
 
     <definition name="sitedetails" extends="base.definition">
         <put-attribute name="title" value="Détails du site" />
-        <put-attribute name="body" value="/WEB-INF/jsp/sitedetails.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/site/sitedetails.jsp" />
     </definition>
 
     <definition name="sitechange" extends="base.definition">
         <put-attribute name="title" value="Modification du site" />
-        <put-attribute name="body" value="/WEB-INF/jsp/sitechange.jsp" />
-    </definition>
-
-    <definition name="secteurchange" extends="base.definition">
-        <put-attribute name="title" value="Modification du secteur" />
-        <put-attribute name="body" value="/WEB-INF/jsp/secteurchange.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/site/sitechange.jsp" />
     </definition>
 
     <definition name="addnewsite" extends="base.definition">
         <put-attribute name="title" value="Ajouter un nouveau site" />
-        <put-attribute name="body" value="/WEB-INF/jsp/addnewsite.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/site/addnewsite.jsp" />
+    </definition>
+
+    <definition name="addnewsecteur" extends="base.definition">
+        <put-attribute name="title" value="Ajouter un nouveau secteur" />
+        <put-attribute name="body" value="/WEB-INF/jsp/secteur/addnewsecteur.jsp" />
+    </definition>
+
+    <definition name="secteurchange" extends="base.definition">
+        <put-attribute name="title" value="Modification du secteur" />
+        <put-attribute name="body" value="/WEB-INF/jsp/secteur/secteurchange.jsp" />
     </definition>
 
 </tiles-definitions>

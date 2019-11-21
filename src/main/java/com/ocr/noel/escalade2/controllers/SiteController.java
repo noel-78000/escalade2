@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/site")
@@ -72,5 +73,14 @@ public class SiteController {
             modelMap.addAttribute("error", messageSourceService.getMessage("error.create.site"));
             return "addnewsite";
         }
+    }
+
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String addNew(@RequestParam(value = "id") Integer id, ModelMap modelMap) {
+        siteService.deleteById(id);
+        List<Site> sites = siteService.findAll();
+        modelMap.addAttribute("sitessommaire", sites);
+        return "searchhome";
     }
 }

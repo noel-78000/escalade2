@@ -47,6 +47,12 @@ public class SecteurController {
         }
     }
 
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addNew(@RequestParam(value = "id") Integer siteId, ModelMap modelMap) {
+        modelMap.addAttribute("siteid", siteId);
+        return "addnewsecteur";
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@RequestParam(value = "siteid") Integer siteId,
                       @RequestParam(value = "nom") String nom,

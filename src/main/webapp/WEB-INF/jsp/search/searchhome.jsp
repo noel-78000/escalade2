@@ -1,4 +1,3 @@
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <form method="post" action="${pageContext.request.contextPath}/search">
     <fieldset>
@@ -23,15 +22,24 @@
         <a href="${pageContext.request.contextPath}/search/site?id=${sitesommaire.id}">
             <p>N°<c:out value="${ status.count }" /> : <c:out value="${sitesommaire.nom}"></c:out>, <c:out value="${sitesommaire.lieu}"></c:out>
         </a>
+        <c:if test="${sitesommaire.tag}">
+            <img src="${pageContext.request.contextPath}/img/logoTag.png"/>
+        </c:if>
                 &nbsp<a href="${pageContext.request.contextPath}/site/details?id=${sitesommaire.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a>
             </p>
     </c:forEach>
+    <form method="get" action="${pageContext.request.contextPath}/site/add">
+        <input class="boutonStyled" type="submit" value="<spring:message code="add.new.site"/>">
+    </form>
 </c:if>
 
 <c:if test="${!empty sites}">
     <hr/>
     <c:forEach items="${ sites }" var="site" varStatus="status">
         <p>N°<c:out value="${ status.count }" /> : <c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out>
+            <c:if test="${site.tag}">
+                <img src="${pageContext.request.contextPath}/img/logoTag.png"/>
+            </c:if>
             <a href="${pageContext.request.contextPath}/site/details?id=${site.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a> </p>
         <c:forEach items="${ site.secteurs }" var="secteur">
             <c:out value="${ secteur.nom }"></c:out>
