@@ -52,6 +52,7 @@ public class SecteurService {
         return secteurRepository.findById(id).orElse(null);
     }
 
+    @Transactional
     public boolean updateSecteur(Integer id, String nom) {
         Secteur secteur = findById(id);
         if (nom != null && nom.length() > 0 && nom.length() <= 100) {
@@ -62,6 +63,7 @@ public class SecteurService {
         return false;
     }
 
+    @Transactional
     public boolean add(String nom, Integer siteId) {
         Secteur secteur = new Secteur();
         Site site = siteService.findById(siteId);

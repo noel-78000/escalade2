@@ -14,6 +14,12 @@
                 <td><spring:message code="place"/>:</td>
                 <td><input type="text" value="${site.lieu}" name="lieu"/></td>
             </tr>
+            <c:if test="${isassolevel}">
+                <tr>
+                    <td><spring:message code="official.association.site"/>:</td>
+                    <td><input type="radio" name="siteofficial" value="siteofficial" id="siteofficial" <c:if test="${siteofficialistaged}">checked</c:if>/></td>
+                </tr>
+            </c:if>
         </table>
         <input formaction="${pageContext.request.contextPath}/site/change"
                class="boutonStyled" type="submit" value="<spring:message code="button.submit.record"/>" />

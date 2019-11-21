@@ -107,6 +107,11 @@ public class UserService {
         return false;
     }
 
+    /**
+     * get user from principal and if existing then DataBase
+     * @param principal the logued user
+     * @return user updated
+     */
     public User getUserFromPrincipalAndDB(Principal principal) {
         User userDB = null;
         try {
@@ -174,5 +179,18 @@ public class UserService {
             return false;
         }
         return isOk;
+    }
+
+    /**
+     * if the user is at least an association member return true otherwise false
+     * @param principal principal logued
+     * @return if is association member or more
+     */
+    public boolean isAtLeastAssociationLevel(Principal principal) {
+        User user = getUserFromPrincipalAndDB(principal);
+        if (user == null) return false;
+        RoleEnum role = RoleEnum.getRole(user.getRole());
+        if (RoleEnum.ROLE_ASSO.equals(role)) return  true;
+        return false;
     }
 }

@@ -5,12 +5,18 @@
         <table>
             <tr>
                 <td>nom:</td>
-                <td><input type="text" placeholder="nom du site" name="nom" maxlength="100" autofocus/></td>
+                <td><input type="text" placeholder="nom du site" id="nom" name="nom" value="${param.nom}" maxlength="100" autofocus/></td>
             </tr>
             <tr>
                 <td>lieu:</td>
-                <td><input type="text" placeholder="lieu" maxlength="100" name="lieu"/></td>
+                <td><input type="text" placeholder="lieu" maxlength="100" id="lieu" name="lieu" value="${param.lieu}"/></td>
             </tr>
+            <c:if test="${isassolevel}">
+                <tr>
+                    <td><spring:message code="official.association.site"/>:</td>
+                    <td><input type="radio" name="siteofficial" value="siteofficial" id="siteofficial"/></td>
+                </tr>
+            </c:if>
         </table>
         <input type="submit" class="boutonStyled" value="enregistrer"/>
     </fieldset>

@@ -11,7 +11,7 @@ public class Longueur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 100)
+    @Column(length = 3)
     private String cotation;
 
     @ManyToOne(fetch = FetchType.EAGER)

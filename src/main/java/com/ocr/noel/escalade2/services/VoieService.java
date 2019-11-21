@@ -5,6 +5,7 @@ import com.ocr.noel.escalade2.entities.Voie;
 import com.ocr.noel.escalade2.repositories.VoieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VoieService {
@@ -27,6 +28,7 @@ public class VoieService {
         voieRepository.deleteById(id);
     }
 
+    @Transactional
     public boolean updateVoie(Integer id, String nom) {
         Voie voie = findById(id);
         if (nom != null && nom.length() > 0 && nom.length() <= 100) {
@@ -37,9 +39,10 @@ public class VoieService {
         return false;
     }
 
+    @Transactional
     public boolean add(String nom, Integer secteurId) {
         Secteur secteur = secteurService.findById(secteurId);
-        if (secteur != null) {
+        if (secteur != null && nom != null && nom.length() > 0 && nom.length() <= 100) {
             Voie voie = new Voie();
             voie.setNom(nom);
             voie.setSecteur(secteur);

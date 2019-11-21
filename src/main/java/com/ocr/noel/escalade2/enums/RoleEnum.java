@@ -2,6 +2,7 @@ package com.ocr.noel.escalade2.enums;
 
 public enum RoleEnum {
 
+    ROLE_UNDEFINED(0, "ROLE_UNDEFINED"),
     ROLE_USER(1, "ROLE_USER"),
     ROLE_ASSO(2, "ROLE_ASSO");
 
@@ -23,5 +24,11 @@ public enum RoleEnum {
 
     public String getName() {
         return name;
+    }
+
+    public static RoleEnum getRole(byte roleNumber) {
+        if (roleNumber == ROLE_USER.getNum()) return ROLE_USER;
+        if (roleNumber == ROLE_ASSO.getNum()) return ROLE_ASSO;
+        return ROLE_UNDEFINED;
     }
 }

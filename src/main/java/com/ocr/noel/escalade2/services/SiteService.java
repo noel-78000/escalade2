@@ -2,12 +2,15 @@ package com.ocr.noel.escalade2.services;
 
 import com.ocr.noel.escalade2.entities.Secteur;
 import com.ocr.noel.escalade2.entities.Site;
+import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.entities.Voie;
+import com.ocr.noel.escalade2.enums.RoleEnum;
 import com.ocr.noel.escalade2.repositories.SiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +22,9 @@ public class SiteService {
 
     @Autowired
     SecteurService secteurService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     VoieService voieService;
@@ -73,23 +79,40 @@ public class SiteService {
         siteRepository.save(site);
     }
 
-    public boolean updateSite(Integer id, String lieu, String nom) {
+    @Transactional
+    public boolean updateSite(Integer id, String lieu, String nom, String tag, Principal principal) {
         Site site = findById(id);
         if (site == null) {
             return false;
         }
-        if (lieu != null && lieu.length() > 0) site.setLieu(lieu);
-        if (nom != null && nom.length() > 0) site.setNom(nom);
+        if (lieu != null && lieu.length() > 0 && lieu.length() <= 100) site.setLieu(lieu);
+        if (nom != null && nom.length() > 0 && nom.length() <= 100) site.setNom(nom);
+        boolean isAtAssoLevel = userService.isAtLeastAssociationLevel(principal);
+        if (isAtAssoLevel) {
+            if (tag == null) site.setTag(false);
+            else site.setTag(true);
+        }
         save(site);
         return true;
     }
 
     @Transactional
-    public Site add(String lieu, String nom) {
-        Site site = new Site();
-        site.setLieu(lieu);
-        site.setNom(nom);
-        site.setTag(false);
-        return siteRepository.save(site);
+    public Site add(String lieu, String nom, String siteOfficialTag, Principal principal) {
+        if (lieu != null && lieu.length() > 0 && lieu.length() <= 100
+            && nom != null && nom.length() > 0 && nom.length() <= 100) {
+            Site site = new Site();
+            site.setLieu(lieu);
+            site.setNom(nom);
+            boolean isAtAssoLevel = userService.isAtLeastAssociationLevel(principal);
+            if (isAtAssoLevel) {
+                if (siteOfficialTag == null) site.setTag(false);
+                else site.setTag(true);
+            } else {
+                site.setTag(false);
+            }
+            Site siteSaved = siteRepository.save(site);
+            return siteSaved;
+        }
+        return null;
     }
 }

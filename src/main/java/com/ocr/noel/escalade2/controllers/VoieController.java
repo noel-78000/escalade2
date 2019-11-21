@@ -76,10 +76,10 @@ public class VoieController {
             String redirectUrl = "/site/details?id=" + siteId;
             return "redirect:" + redirectUrl;
         } else {
-            modelMap.addAttribute("errorvoie", messageSourceService.getMessage("error.voie.tying"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error.voie.tying"));
             modelMap.addAttribute("siteid", siteId);
             modelMap.addAttribute("secteurid", secteurId);
-            return "voiechange";
+            return "addnewvoie";
         }
     }
 }
