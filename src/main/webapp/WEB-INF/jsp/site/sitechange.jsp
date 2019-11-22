@@ -17,7 +17,10 @@
             <c:if test="${isassolevel}">
                 <tr>
                     <td><spring:message code="official.association.site"/>:</td>
-                    <td><input type="radio" name="siteofficial" value="siteofficial" id="siteofficial" <c:if test="${siteofficialistaged}">checked</c:if>/></td>
+                    <td>
+                        <spring:message code="official.association.site.yes"/> <input type="radio" name="siteofficial" value="yes" <c:if test="${siteofficialistaged}">checked</c:if>/>
+                        <spring:message code="official.association.site.no"/> <input type="radio" name="siteofficial" value="no" <c:if test="${!siteofficialistaged}">checked</c:if>/>
+                    </td>
                 </tr>
             </c:if>
         </table>

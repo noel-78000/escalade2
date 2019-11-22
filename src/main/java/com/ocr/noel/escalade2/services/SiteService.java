@@ -1,9 +1,6 @@
 package com.ocr.noel.escalade2.services;
 
-import com.ocr.noel.escalade2.entities.Secteur;
-import com.ocr.noel.escalade2.entities.Site;
-import com.ocr.noel.escalade2.entities.User;
-import com.ocr.noel.escalade2.entities.Voie;
+import com.ocr.noel.escalade2.entities.*;
 import com.ocr.noel.escalade2.enums.RoleEnum;
 import com.ocr.noel.escalade2.repositories.SiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,9 @@ public class SiteService {
 
     @Autowired
     VoieService voieService;
+
+    @Autowired
+    CommentaireService commentaireService;
 
     public Site findByIdFetchSecteurs(Integer id) {
         return siteRepository.findByIdFetchSecteurs(id).orElse(null);
@@ -65,8 +65,12 @@ public class SiteService {
     }
 
     @Transactional
-    public void deleteById(Integer id) {
-        siteRepository.deleteById(id);
+    public void deleteById(Integer id, Principal principal) {
+        if (userService.isAtLeastAssociationLevel(principal)) {
+            List<Commentaire> comments = commentaireService.findAllBySiteIdFetchUser(id);
+            comments.forEach(c -> commentaireService.delete(c.getId(), principal));
+            siteRepository.deleteById(id);
+        }
     }
 
     @Transactional
@@ -89,8 +93,8 @@ public class SiteService {
         if (nom != null && nom.length() > 0 && nom.length() <= 100) site.setNom(nom);
         boolean isAtAssoLevel = userService.isAtLeastAssociationLevel(principal);
         if (isAtAssoLevel) {
-            if (tag == null) site.setTag(false);
-            else site.setTag(true);
+            if ("yes".equals(tag)) site.setTag(true);
+            else site.setTag(false);
         }
         save(site);
         return true;
@@ -105,8 +109,8 @@ public class SiteService {
             site.setNom(nom);
             boolean isAtAssoLevel = userService.isAtLeastAssociationLevel(principal);
             if (isAtAssoLevel) {
-                if (siteOfficialTag == null) site.setTag(false);
-                else site.setTag(true);
+                if ("yes".equals(siteOfficialTag)) site.setTag(true);
+                else site.setTag(false);
             } else {
                 site.setTag(false);
             }

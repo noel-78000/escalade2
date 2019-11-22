@@ -103,8 +103,10 @@ public class SiteController {
 
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String addNew(@RequestParam(value = "id") Integer id, ModelMap modelMap) {
-        siteService.deleteById(id);
+    public String addNew(@RequestParam(value = "id") Integer id,
+                         ModelMap modelMap,
+                         Principal principal) {
+        siteService.deleteById(id, principal);
         List<Site> sites = siteService.findAll();
         modelMap.addAttribute("sitessommaire", sites);
         return "searchhome";
