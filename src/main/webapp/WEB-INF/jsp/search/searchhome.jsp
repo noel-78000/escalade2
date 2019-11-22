@@ -25,7 +25,8 @@
         <c:if test="${sitesommaire.tag}">
             <img src="${pageContext.request.contextPath}/img/logoTag.png"/>
         </c:if>
-                &nbsp<a href="${pageContext.request.contextPath}/site/details?id=${sitesommaire.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a>
+        &nbsp<a href="${pageContext.request.contextPath}/site/details?id=${sitesommaire.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a>
+        &nbsp<a href="${pageContext.request.contextPath}/comment/list?id=${sitesommaire.id}"><span style="font-size: 0.8em">(<spring:message code="comment.see"/>)</span></a>
             </p>
     </c:forEach>
     <form method="get" action="${pageContext.request.contextPath}/site/add">
@@ -40,7 +41,8 @@
             <c:if test="${site.tag}">
                 <img src="${pageContext.request.contextPath}/img/logoTag.png"/>
             </c:if>
-            <a href="${pageContext.request.contextPath}/site/details?id=${site.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a> </p>
+            <a href="${pageContext.request.contextPath}/site/details?id=${site.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a>
+            <a href="${pageContext.request.contextPath}/comment/list?id=${site.id}"><span style="font-size: 0.8em">(<spring:message code="comment.see"/>)</span></a></p>
         <c:forEach items="${ site.secteurs }" var="secteur">
             <c:out value="${ secteur.nom }"></c:out>
             <c:forEach items="${ secteur.voies }" var="voie">

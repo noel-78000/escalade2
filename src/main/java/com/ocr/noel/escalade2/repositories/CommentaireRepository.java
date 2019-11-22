@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -13,4 +14,8 @@ public interface CommentaireRepository extends JpaRepository<Commentaire, Intege
 
     @Query("SELECT c from Commentaire c LEFT JOIN  FETCH c.site LEFT JOIN FETCH c.user where c.id = :id")
     Optional<Commentaire> findByIdFetchSiteFetchUser(@Param("id") Integer id);
+
+    @Query("SELECT c FROM Commentaire c LEFT JOIN FETCH c.user where c.site.id = :siteId")
+    List<Commentaire> findAllBySiteIdFetchUser(@Param("siteId") Integer siteId);
+
 }

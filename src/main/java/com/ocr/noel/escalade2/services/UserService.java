@@ -109,6 +109,7 @@ public class UserService {
 
     /**
      * get user from principal and if existing then DataBase
+     *
      * @param principal the logued user
      * @return user updated
      */
@@ -183,6 +184,7 @@ public class UserService {
 
     /**
      * if the user is at least an association member return true otherwise false
+     *
      * @param principal principal logued
      * @return if is association member or more
      */
@@ -190,7 +192,7 @@ public class UserService {
         User user = getUserFromPrincipalAndDB(principal);
         if (user == null) return false;
         RoleEnum role = RoleEnum.getRole(user.getRole());
-        if (RoleEnum.ROLE_ASSO.equals(role)) return  true;
+        if (role != null && RoleEnum.ROLE_ASSO.getNum() <= role.getNum()) return true;
         return false;
     }
 }

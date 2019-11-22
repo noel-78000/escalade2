@@ -5,7 +5,7 @@
         <p><spring:message code="goodmorning"/> ${principal.user.firstName} ${principal.user.lastName}</p>
         </div>
     </c:if>
-    <div class="centerBloc hideOnPhone">
+    <div class="centerBlocHead hideOnPhone">
         <img src="${pageContext.request.contextPath}/img/logo.png"/>
     </div>
 <hr class="hideOnPhone"/>

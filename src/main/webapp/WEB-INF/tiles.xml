@@ -92,4 +92,19 @@
         <put-attribute name="body" value="/WEB-INF/jsp/longueur/addnewlongueur.jsp" />
     </definition>
 
+    <definition name="commentlist" extends="base.definition">
+        <put-attribute name="title" value="Lister les commentaires" />
+        <put-attribute name="body" value="/WEB-INF/jsp/comment/commentlist.jsp" />
+    </definition>
+
+    <definition name="commentnew" extends="base.definition">
+        <put-attribute name="title" value="Nouveau commentaire" />
+        <put-attribute name="body" value="/WEB-INF/jsp/comment/commentnew.jsp" />
+    </definition>
+
+    <definition name="commentchange" extends="base.definition">
+        <put-attribute name="title" value="Changer un commentaire" />
+        <put-attribute name="body" value="/WEB-INF/jsp/comment/commentchange.jsp" />
+    </definition>
+
 </tiles-definitions>

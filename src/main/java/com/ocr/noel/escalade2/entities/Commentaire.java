@@ -22,7 +22,7 @@ public class Commentaire {
     @Column(name = "dt_creation")
     private LocalDateTime dtCreation;
 
-    @Column(name = "commentaire")
+    @Column(name = "commentaire", length = 65535)
     private String commentaire;
 
     public Integer getId() {

@@ -1,8 +1,22 @@
-.centerBloc {
+.centerBlocHead {
     overflow: no-display;
     word-wrap: break-word;
     margin: auto;
     text-align: center;
+}
+.monCadre
+{
+    border: 1px red solid;
+    border-radius: 20px / 15px;
+    box-shadow: 10px 10px 10px Black;
+    /*width   : 200px;*/
+    min-width: 10%;
+    max-height  : 300px;
+    overflow: auto;
+    position: relative;
+    z-index : 1;
+    padding: 10px 10px 10px 5px;/*marge interieur*/
+    margin: 10px 10px 10px 50px;/*marge exterieur*/
 }
 .showOnPhoneOnly {
     display: none;
@@ -22,5 +36,20 @@
     }
     .showOnPhoneOnly {
         display: block;
+    }
+    .monCadre
+    {
+        border: 1px red solid;
+        border-radius: 20px / 15px;
+        box-shadow: 5px 5px 5px Black;
+        /*width   : 200px;*/
+        min-width: 10%;
+        /*height  : 200px;*/
+        max-height  : 300px;
+        overflow: auto;
+        position: relative;
+        z-index : 1;
+        padding: 1px 1px 1px 5px;/*marge interieur*/
+        margin: 1px 1px 10px 1px;/*marge exterieur*/
     }
 }
