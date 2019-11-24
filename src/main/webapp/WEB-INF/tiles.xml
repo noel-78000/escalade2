@@ -117,4 +117,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/personnalspace/addtopo.jsp" />
     </definition>
 
+    <definition name="listtopodispo" extends="base.definition">
+        <put-attribute name="title" value="List topo dispo" />
+        <put-attribute name="body" value="/WEB-INF/jsp/personnalspace/listtopodispo.jsp" />
+    </definition>
+
 </tiles-definitions>

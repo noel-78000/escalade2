@@ -83,3 +83,16 @@ INSERT INTO `commentaire` VALUES (5, 1, 1, '2019-11-18 10:00:00', 'A faire au mo
 INSERT INTO `commentaire` VALUES (6, 3, 3, '2019-11-18 10:00:00', 'Grimper grimper toujours grimper... c`est difficile');
 INSERT INTO `commentaire` VALUES (7, 4, 4, '2019-11-18 10:00:00', 'Débutant s`abstenir');
 UNLOCK TABLES;
+
+LOCK TABLES `topo` WRITE;
+INSERT INTO `topo` VALUES (1, 1, 0, '2019-11-18 10:00:00', 'Saint Rose', 'Grimper un dimanche après midi, qui est partant?');
+INSERT INTO `topo` VALUES (2, 1, 0, '2019-11-18 10:20:00', 'Saint Leu', 'Je suis dispo le samedi après midi, qui est dispo?');
+INSERT INTO `topo` VALUES (3, 1, 0, '2019-11-18 10:30:00', 'Saint Pierre', 'Site de grimpe intéressant, dispo le week-end?');
+INSERT INTO `topo` VALUES (4, 1, 0, '2019-11-19 12:24:03', 'La plaine de palmiste', 'partant pour une escalade à plusieurs?');
+UNLOCK TABLES;
+
+LOCK TABLES `topo_resa` WRITE;
+INSERT INTO `topo_resa` VALUES (1, 2, 1, '2019-11-20 10:00:00', 1);
+INSERT INTO `topo_resa` VALUES (2, 3, 1, '2019-11-21 10:00:00', 0);
+INSERT INTO `topo_resa` VALUES (3, 4, 2, '2019-11-22 10:00:00', 0);
+UNLOCK TABLES;
