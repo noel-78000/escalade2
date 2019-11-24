@@ -31,9 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/list", "/user/moncompte").hasAnyRole("ASSO", "USER")
+                .antMatchers("/user/moncompte").hasAnyRole("ASSO", "USER")
                 .antMatchers("/site/**", "voie/**", "longueur/**").hasAnyRole("ASSO", "USER")
                 .antMatchers("/comment/**").hasAnyRole("ASSO", "USER")
+                .antMatchers("/user/list", "/personnalspace/**").hasAnyRole("ASSO", "USER")
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin().loginPage("/login")

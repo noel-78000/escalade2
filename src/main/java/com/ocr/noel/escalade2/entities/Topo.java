@@ -24,7 +24,7 @@ public class Topo {
     @Column(name = "lieu", length = 100)
     private String lieu;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 65535)
     private String description;
 
     public Integer getId() {

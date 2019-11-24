@@ -107,4 +107,14 @@
         <put-attribute name="body" value="/WEB-INF/jsp/comment/commentchange.jsp" />
     </definition>
 
+    <definition name="personnalspacehome" extends="base.definition">
+        <put-attribute name="title" value="Espace personnel" />
+        <put-attribute name="body" value="/WEB-INF/jsp/personnalspace/personnalspacehome.jsp" />
+    </definition>
+
+    <definition name="addtopo" extends="base.definition">
+        <put-attribute name="title" value="Add topo" />
+        <put-attribute name="body" value="/WEB-INF/jsp/personnalspace/addtopo.jsp" />
+    </definition>
+
 </tiles-definitions>
