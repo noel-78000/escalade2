@@ -17,4 +17,10 @@ public interface TopoResaRepository extends JpaRepository<TopoResa, Integer> {
 
     @Query("SELECT tr FROM TopoResa tr LEFT JOIN FETCH tr.topo t LEFT JOIN FETCH tr.user where t.id = :topoId")
     List<TopoResa> findAllByTopoIdFetchUser(@Param("topoId") Integer topoId);
+
+    @Query("SELECT tr FROM TopoResa tr WHERE tr.user.id = :userId and tr.topo.id = :topoId")
+    Optional<TopoResa> findByUserIdByTopoId(@Param("userId") Integer userId, @Param("topoId") Integer topoId);
+
+    @Query("SELECT tr FROM TopoResa tr LEFT JOIN FETCH tr.topo t LEFT JOIN FETCH t.user WHERE tr.user.id = :userId")
+    List<TopoResa> findAllByUserIdFetchTopoFecthUserTopo(@Param("userId") Integer userId);
 }

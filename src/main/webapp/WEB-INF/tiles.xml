@@ -122,4 +122,19 @@
         <put-attribute name="body" value="/WEB-INF/jsp/personnalspace/listtopodispo.jsp" />
     </definition>
 
+    <definition name="toporesa" extends="base.definition">
+        <put-attribute name="title" value="Demande de resa" />
+        <put-attribute name="body" value="/WEB-INF/jsp/personnalspace/toporesa.jsp" />
+    </definition>
+
+    <definition name="myresalist" extends="base.definition">
+        <put-attribute name="title" value="Demandes de resa" />
+        <put-attribute name="body" value="/WEB-INF/jsp/personnalspace/myresalist.jsp" />
+    </definition>
+
+    <definition name="changetopo" extends="base.definition">
+        <put-attribute name="title" value="Change topo" />
+        <put-attribute name="body" value="/WEB-INF/jsp/personnalspace/changetopo.jsp" />
+    </definition>
+
 </tiles-definitions>

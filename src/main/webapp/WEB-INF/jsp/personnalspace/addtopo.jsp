@@ -4,7 +4,6 @@
 
     <fieldset>
         <legend><spring:message code="topo"/></legend>
-        <input type="text" hidden value="${userid}" name="userid"/>
         <table>
             <tr>
                 <td>
@@ -33,8 +32,8 @@
 
         <input formaction="${pageContext.request.contextPath}/personnalspace/topo/add"
                class="boutonStyled" type="submit" value="<spring:message code="button.submit.record"/>" />
-        <input formaction="${pageContext.request.contextPath}/personnalspace/" formmethod="get"
-               class="boutonStyled" type="submit" value="<spring:message code="button.submit.cancel"/>" />
+        <input class="boutonStyled" type="button" value="<spring:message code="button.submit.cancel"/>"
+        onclick="window.location='${pageContext.request.contextPath}/personnalspace/'"/>
     </fieldset>
 </form>
 <c:if test="${!empty error}"><p style="color: red">${error}</p></c:if>

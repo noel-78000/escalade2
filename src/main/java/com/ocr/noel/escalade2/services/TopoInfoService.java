@@ -31,6 +31,7 @@ public class TopoInfoService {
 
     private TopoInfo getTopoInfo(Topo topo, List<TopoResa> topoResas) {
         TopoInfo topoInfo = new TopoInfo();
+        topoInfo.setId(topo.getId());
         topoInfo.setLieu(topo.getLieu());
         topoInfo.setDescription(topo.getDescription());
         topoInfo.setDispoResa(topo.getDispoResa());

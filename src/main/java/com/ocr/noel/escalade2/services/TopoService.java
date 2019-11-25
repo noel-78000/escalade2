@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.services;
 
 import com.ocr.noel.escalade2.entities.Topo;
+import com.ocr.noel.escalade2.entities.TopoResa;
 import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.repositories.TopoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +20,9 @@ public class TopoService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    TopoResaService topoResaService;
 
     public Topo findByIdFetchUser(Integer id) {
         return topoRepository.findByIdFetchUser(id).orElse(null);
@@ -33,8 +38,17 @@ public class TopoService {
         return topoRepository.findAllByUserId(userId);
     }
 
-    public List<Topo> findAllDispoWithoutUserId(Integer userId) {
-        return topoRepository.findAllDispoWithoutUserId(userId);
+    public List<Topo> findAllDispoWithoutUserIdWithoutResa(Integer userId) {
+        List<Topo> topos = topoRepository.findAllDispoWithoutUserId(userId);
+        List<Topo> topoList = new ArrayList<>();
+        topos.forEach(t -> {
+            TopoResa topoResa = topoResaService.findByUserIdByTopoId(userId, t.getId());
+            if (topoResa == null) {
+                // this topo is not already selected
+                topoList.add(t);
+            }
+        });
+        return topoList;
     }
 
     public Topo findById(Integer topoId) {
@@ -42,18 +56,47 @@ public class TopoService {
     }
 
     @Transactional
-    public boolean add(Integer userId, String lieu, String description, String topoPret) {
-        if (userId == null || lieu == null || description == null) return false;
+    public boolean add(User user, String lieu, String description, String topoPret) {
+        if (user == null || lieu == null || description == null) return false;
         if (lieu.length() == 0 || lieu.length() > 100 || description.length() == 0 || description.length() > 65535)
             return false;
         Topo topo = new Topo();
         topo.setDescription(description);
-        User user = userService.findById(userId);
-        if (user == null) return false;
         topo.setUser(user);
         topo.setLieu(lieu);
         topo.setDispoResa(false);
         topo.setDtParution(LocalDateTime.now());
+        if ("yes".equals(topoPret)) topo.setDispoResa(true);
+        else topo.setDispoResa(false);
+        topoRepository.save(topo);
+        return true;
+    }
+
+    @Transactional
+    public void save(Topo topo) {
+        topoRepository.save(topo);
+    }
+
+    /**
+     * get the topo if the user is the owner
+     * @param topoId the id of topo
+     * @param user the owner
+     * @return a topo of the user, otherwise null
+     */
+    public Topo getTopo(Integer topoId, User user) {
+        if (topoId == null || user == null) return null;
+        Topo topo = topoRepository.findById(topoId).orElse(null);
+        if (topo == null || user.getId() != topo.getUser().getId()) return null;
+        return topo;
+    }
+
+    @Transactional
+    public boolean updateTopo(Integer topoId, String lieu, String description, String topoPret, User user) {
+        if (topoId == null || lieu == null || description == null || user == null) return false;
+        Topo topo = topoRepository.findById(topoId).orElse(null);
+        if (topo == null || user.getId() != topo.getUser().getId()) return false;
+        topo.setLieu(lieu);
+        topo.setDescription(description);
         if ("yes".equals(topoPret)) topo.setDispoResa(true);
         else topo.setDispoResa(false);
         topoRepository.save(topo);

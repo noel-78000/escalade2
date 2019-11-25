@@ -8,11 +8,20 @@ import java.util.List;
 
 public class TopoInfo {
 
+    private Integer id;
     private String lieu;
     private String description;
     private Boolean dispoResa;
     private LocalDateTime dtParution;
     private List<TopoResa> topoResas;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getLieu() {
         return lieu;

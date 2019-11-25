@@ -4,7 +4,6 @@
         <form method="post" action="${pageContext.request.contextPath}/personnalspace/topo/resa">
             <fieldset>
                 <legend><spring:message code="topo"/> <c:out value="${topo.user.firstName}"/> <c:out value="${topo.user.lastName}"/> </legend>
-                <input type="text" hidden value="${userid}" name="userid"/>
                 <input type="text" hidden value="${topo.id}" name="topoid"/>
                 <table>
                     <tr>

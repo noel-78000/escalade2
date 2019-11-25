@@ -2,25 +2,32 @@
 <table>
     <tr>
         <td>
-            <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/add?userid=${user.id}'">
+            <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/add'">
                 <spring:message code="button.submit.topo.add"/>
             </button>
         </td>
         <td>
-            <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/list?userid=${user.id}'">
+            <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/list'">
                 <spring:message code="button.submit.topo.list"/>
+            </button>
+        </td>
+        <td>
+            <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/myresas'">
+                <spring:message code="button.submit.topo.resa.list.mine"/>
             </button>
         </td>
     </tr>
 </table>
-<hr>
 
 <c:if test="${!empty topoinfos}">
+    <hr>
     <table>
         <c:forEach items="${topoinfos}" var="topoinfo">
             <tr>
                 <td>
-                    <c:out value="${topoinfo.lieu}"/>
+                    <a href="${pageContext.request.contextPath}/personnalspace/topo/change?topoid=${topoinfo.id}">
+                        <c:out value="${topoinfo.lieu}"/>
+                    </a>
                 </td>
                 <td>
                     <div class="centerBlocHead">
@@ -36,7 +43,9 @@
                 </td>
                 <td>
                     <c:forEach items="${topoinfo.topoResas}" var="toporesa">
-                        <p><c:out value="${toporesa.user.firstName}"/> <c:out value="${toporesa.user.lastName}"/></p>
+                        <a href="${pageContext.request.contextPath}/personnalspace/toporesa/selected?toporesaid=${toporesa.id}">
+                            <p><c:out value="${toporesa.user.firstName}"/> <c:out value="${toporesa.user.lastName}"/></p>
+                        </a>
                     </c:forEach>
                 </td>
             </tr>

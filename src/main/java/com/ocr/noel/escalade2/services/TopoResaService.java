@@ -1,12 +1,16 @@
 package com.ocr.noel.escalade2.services;
 
+import com.ocr.noel.escalade2.beans.TopoInfo;
+import com.ocr.noel.escalade2.entities.Topo;
 import com.ocr.noel.escalade2.entities.TopoResa;
+import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.repositories.TopoResaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,14 +33,48 @@ public class TopoResaService {
         return topoResaRepository.findAllByTopoIdFetchUser(topoId);
     }
 
+    public TopoResa findByUserIdByTopoId(Integer userId, Integer topoId) {
+        return topoResaRepository.findByUserIdByTopoId(userId, topoId).orElse(null);
+    }
+
     @Transactional
-    public boolean addResa(Integer topoId, Integer userId) {
+    public boolean addResa(Integer topoId, User user) {
+        if (topoId == null || user == null) return false;
         TopoResa topoResa = new TopoResa();
         topoResa.setDtCreation(LocalDateTime.now());
-        topoResa.setUser(userService.findById(userId));
+        topoResa.setUser(user);
         topoResa.setTopo(topoService.findById(topoId));
         topoResa.setAcceptResa(false);
         topoResaRepository.save(topoResa);
+        return true;
+    }
+
+    @Transactional
+    public boolean setUpResa(Integer topoResaId, String acceptResa) {
+        TopoResa topoResa = topoResaRepository.findById(topoResaId).orElse(null);
+        if (topoResa == null) return false;
+        if ("on".equals(acceptResa)) {
+            topoResa.setAcceptResa(true);
+        } else {
+            topoResa.setAcceptResa(false);
+        }
+        Topo topo = topoService.findById(topoResa.getTopo().getId());
+        if (topo == null) return false;
+        topo.setDispoResa(false);
+        topoService.save(topo);
+        topoResaRepository.save(topoResa);
+        return true;
+    }
+
+    public List<TopoResa> getForUserFetchTopoFetchUserTopo(User user) {
+        if (user == null) return new ArrayList<TopoResa>();
+        return topoResaRepository.findAllByUserIdFetchTopoFecthUserTopo(user.getId());
+    }
+
+    public boolean delete(Integer topoResaId, User user) {
+        TopoResa topoResa = topoResaRepository.findById(topoResaId).orElse(null);
+        if (topoResa == null || user == null || user.getId() != topoResa.getUser().getId()) return false;
+        topoResaRepository.deleteById(topoResa.getId());
         return true;
     }
 }
