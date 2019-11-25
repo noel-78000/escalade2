@@ -81,13 +81,30 @@ public class PersonnalSpaceController {
 
     @RequestMapping(value = "/topo/change", method = RequestMethod.POST)
     public String changeTopo(@RequestParam("topoid") Integer topoId,
-                           @RequestParam("lieu") String lieu,
-                           @RequestParam("description") String description,
-                           @RequestParam(value = "topopret", required = false) String topoPret,
-                           Principal principal,
-                           ModelMap modelMap) {
+                             @RequestParam("lieu") String lieu,
+                             @RequestParam("description") String description,
+                             @RequestParam(value = "topopret", required = false) String topoPret,
+                             Principal principal,
+                             ModelMap modelMap) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         boolean isOK = topoService.updateTopo(topoId, lieu, description, topoPret, user);
+        if (isOK) {
+            String url = "/personnalspace";
+            return "redirect:" + url;
+        } else {
+            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            Topo topo = topoService.getTopo(topoId, user);
+            modelMap.addAttribute("topo", topo);
+            return "changetopo";
+        }
+    }
+
+    @RequestMapping(value = "/topo/delete", method = RequestMethod.POST)
+    public String delteTopo(@RequestParam("topoid") Integer topoId,
+                            Principal principal,
+                            ModelMap modelMap) {
+        User user = userService.getUserFromPrincipalAndDB(principal);
+        boolean isOK = topoService.deleteTopo(topoId, user);
         if (isOK) {
             String url = "/personnalspace";
             return "redirect:" + url;

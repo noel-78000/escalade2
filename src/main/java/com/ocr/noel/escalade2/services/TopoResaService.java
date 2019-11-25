@@ -71,10 +71,20 @@ public class TopoResaService {
         return topoResaRepository.findAllByUserIdFetchTopoFecthUserTopo(user.getId());
     }
 
+    @Transactional
     public boolean delete(Integer topoResaId, User user) {
         TopoResa topoResa = topoResaRepository.findById(topoResaId).orElse(null);
         if (topoResa == null || user == null || user.getId() != topoResa.getUser().getId()) return false;
         topoResaRepository.deleteById(topoResa.getId());
         return true;
+    }
+
+    @Transactional
+    public void delete(Integer topoResaId) {
+        topoResaRepository.deleteById(topoResaId);
+    }
+
+    public List<TopoResa> getAllByTopoId(Integer topoId) {
+        return topoResaRepository.findAllByTopoId(topoId);
     }
 }

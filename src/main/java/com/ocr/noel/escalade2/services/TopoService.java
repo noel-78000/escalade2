@@ -102,4 +102,21 @@ public class TopoService {
         topoRepository.save(topo);
         return true;
     }
+
+    /**
+     * delete topo with all resa from it
+     * @param topoId the id of the topo
+     * @param user the user who is the owner of the topo
+     * @return true if all is ok otherwise false
+     */
+    @Transactional
+    public boolean deleteTopo(Integer topoId, User user) {
+        if (topoId == null || user == null) return false;
+        Topo topo = topoRepository.findById(topoId).orElse(null);
+        if (topo == null || user.getId() != topo.getUser().getId()) return false;
+        List<TopoResa> topoResas = topoResaService.getAllByTopoId(topo.getId());
+        topoResas.forEach(tr -> topoResaService.delete(tr.getId()));
+        topoRepository.deleteById(topoId);
+        return true;
+    }
 }

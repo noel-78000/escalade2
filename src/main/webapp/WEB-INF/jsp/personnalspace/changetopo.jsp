@@ -20,6 +20,8 @@
         </div>
 
         <input class="boutonStyled" type="submit" value="<spring:message code="button.submit.record"/>" />
+        <input formaction="${pageContext.request.contextPath}/personnalspace/topo/delete"
+               class="boutonStyled" type="submit" value="<spring:message code="button.submit.delete"/>" />
         <input class="boutonStyled" type="button" value="<spring:message code="button.submit.cancel"/>"
                onclick="window.location='${pageContext.request.contextPath}/personnalspace/'"/>
     </fieldset>
