@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -45,11 +46,13 @@ public class UserController {
                           @RequestParam(required = true) String lastname,
                           HttpServletRequest request,
                           ModelMap modelMap) {
-        boolean isRegistered = userService.setNewUser(email, password, passwordconfirm, firstname, lastname, modelMap);
-        if (isRegistered) {
+        Map<String, String> map = userService.setNewUser(email, password, passwordconfirm, firstname, lastname);
+        if (map.size() == 1 && !map.containsKey("error")) {
+            modelMap.addAllAttributes(map);
             authWithHttpServletRequest(request, email, password);
             return "home";
         }
+        modelMap.addAllAttributes(map);
         return "registeruser";
     }
 

@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.controllers;
 
 import com.ocr.noel.escalade2.entities.Site;
+import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.services.MessageSourceService;
 import com.ocr.noel.escalade2.services.SiteService;
 import com.ocr.noel.escalade2.services.UserService;
@@ -60,7 +61,8 @@ public class SiteController {
                                    ModelMap modelMap,
                                    Principal principal
                                    ) {
-        boolean isOK = siteService.updateSite(id, lieu, nom, siteOfficialTag, principal);
+        User user = userService.getUserFromPrincipalAndDB(principal);
+        boolean isOK = siteService.updateSite(id, lieu, nom, siteOfficialTag, user);
         if (isOK) {
             String redirectUrl = "/site/details?id=" + id;
             return "redirect:" + redirectUrl;
@@ -89,7 +91,8 @@ public class SiteController {
                          HttpServletRequest request,
                          ModelMap modelMap,
                          Principal principal) {
-        Site site = siteService.add(lieu, nom, siteOfficialTag, principal);
+        User user = userService.getUserFromPrincipalAndDB(principal);
+        Site site = siteService.add(lieu, nom, siteOfficialTag, user);
         if (site != null) {
             String redirectUrl = "/site/details?id=" + site.getId();
             return "redirect:" + redirectUrl;
@@ -106,7 +109,8 @@ public class SiteController {
     public String addNew(@RequestParam(value = "id") Integer id,
                          ModelMap modelMap,
                          Principal principal) {
-        siteService.deleteById(id, principal);
+        boolean isAssoLevel = userService.isAtLeastAssociationLevel(principal);
+        siteService.deleteById(id, isAssoLevel);
         List<Site> sites = siteService.findAll();
         modelMap.addAttribute("sitessommaire", sites);
         return "searchhome";

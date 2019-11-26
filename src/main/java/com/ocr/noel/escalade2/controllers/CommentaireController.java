@@ -1,6 +1,7 @@
 package com.ocr.noel.escalade2.controllers;
 
 import com.ocr.noel.escalade2.entities.Commentaire;
+import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.services.CommentaireService;
 import com.ocr.noel.escalade2.services.MessageSourceService;
 import com.ocr.noel.escalade2.services.UserService;
@@ -51,7 +52,8 @@ public class CommentaireController {
                       @RequestParam("commentnew") String comment,
                       ModelMap modelMap,
                       Principal principal) {
-        boolean isOK = commentaireService.addNew(comment, siteId, principal);
+        User user = userService.getUserFromPrincipalAndDB(principal);
+        boolean isOK = commentaireService.addNew(comment, siteId, user);
         if (isOK) {
             String url = "/comment/list?id=" + siteId;
             return "redirect:" + url;
@@ -65,7 +67,7 @@ public class CommentaireController {
     public String delete(@RequestParam("id") Integer commentId,
                          @RequestParam("siteid") Integer siteId,
                          Principal principal) {
-        commentaireService.delete(commentId, principal);
+        commentaireService.delete(commentId);
         String url = "/comment/list?id=" + siteId;
         return "redirect:" + url;
     }
@@ -92,7 +94,8 @@ public class CommentaireController {
                                 @RequestParam("commentchange") String comment,
                                 ModelMap modelMap,
                                 Principal principal) {
-        boolean isOK = commentaireService.change(comment, commentId, principal);
+        User user = userService.getUserFromPrincipalAndDB(principal);
+        boolean isOK = commentaireService.change(comment, commentId, user);
         if (isOK) {
             String url = "/comment/list?id=" + siteId;
             return "redirect:" + url;

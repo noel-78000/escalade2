@@ -35,12 +35,11 @@ public class CommentaireService {
     }
 
     @Transactional
-    public boolean addNew(String comment, Integer siteId, Principal principal) {
-        if (comment == null || comment.length() == 0 || comment.length() > 65535 || siteId == null || principal == null)
+    public boolean addNew(String comment, Integer siteId, User user) {
+        if (comment == null || comment.length() == 0 || comment.length() > 65535 || siteId == null || user == null)
             return false;
         Site site = siteService.findById(siteId);
-        User user = userService.getUserFromPrincipalAndDB(principal);
-        if (user == null || site == null) return false;
+        if (site == null) return false;
         Commentaire commentaire = new Commentaire();
         commentaire.setCommentaire(comment);
         commentaire.setSite(site);
@@ -51,18 +50,16 @@ public class CommentaireService {
     }
 
     @Transactional
-    public void delete(Integer commentId, Principal principal) {
-        boolean isAtLestAssoLevel = userService.isAtLeastAssociationLevel(principal);
-        if (isAtLestAssoLevel) commentaireRepository.deleteById(commentId);
+    public void delete(Integer commentId) {
+        commentaireRepository.deleteById(commentId);
     }
 
     @Transactional
-    public boolean change(String comment, Integer commentId, Principal principal) {
-        if (comment == null || commentId == null || principal == null) return false;
-        if (!userService.isAtLeastAssociationLevel(principal)) return false;
+    public boolean change(String comment, Integer commentId, User user) {
+        if (comment == null || commentId == null || user == null) return false;
+        if (!userService.isAtLeastAssociationLevelFromUser(user)) return false;
         Commentaire commentaire = commentaireRepository.findById(commentId).orElse(null);
         if (commentaire == null) return false;
-        User user = userService.getUserFromPrincipalAndDB(principal);
         commentaire.setUser(user);
         commentaire.setCommentaire(comment);
         commentaireRepository.save(commentaire);

@@ -26,8 +26,10 @@
         </table>
         <input formaction="${pageContext.request.contextPath}/site/change"
                class="boutonStyled" type="submit" value="<spring:message code="button.submit.record"/>" />
-        <input formaction="${pageContext.request.contextPath}/site/delete"
-               class="boutonStyled" type="submit" value="<spring:message code="button.submit.delete"/>" />
+        <c:if test="${isassolevel}">
+            <input formaction="${pageContext.request.contextPath}/site/delete"
+                   class="boutonStyled" type="submit" value="<spring:message code="button.submit.delete"/>" />
+        </c:if>
         <input formaction="${pageContext.request.contextPath}/secteur/add" formmethod="get"
                class="boutonStyled" type="submit" value="<spring:message code="button.submit.add.secteur"/>" />
     </fieldset>

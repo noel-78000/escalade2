@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,24 +69,24 @@ public class UserService {
      * @param passwordconfirm the confirm pwd
      * @param firstname       his first name
      * @param lastname        his last name
-     * @param modelMap        the modelMap to add new attributs
      * @return true if all is ok false otherwise
      */
-    public boolean setNewUser(String email, String password, String passwordconfirm, String firstname, String lastname, ModelMap modelMap) {
+    public Map<String, String> setNewUser(String email, String password, String passwordconfirm, String firstname, String lastname) {
+        Map<String, String> mapModel = new HashMap<>();
         if (isExistingEmail(email)) {
-            modelMap.addAttribute("error", "l'utilisateur existe déjà!");
-            return false;
+            mapModel.put("error", "l'utilisateur existe déjà!");
+            return mapModel;
         }
         User user = new User();
         if (password != null && password.equals(passwordconfirm)) {
             user.setPwd(password);
         } else {
-            modelMap.addAttribute("error", "les mots de passe ne correspondent pas!");
-            return false;
+            mapModel.put("error", "les mots de passe ne correspondent pas!");
+            return mapModel;
         }
         if (firstname == null || firstname.length() < 1 || lastname == null || lastname.length() < 1) {
-            modelMap.addAttribute("error", "Nom et prénom demandés");
-            return false;
+            mapModel.put("error", "Nom et prénom demandés");
+            return mapModel;
         }
         user.setEmail(email);
         user.setFirstName(firstname);
@@ -94,17 +95,17 @@ public class UserService {
         Map<String, String> mapError = validateObjectService.validate(user);
         if (mapError.size() == 0) {
             save(user);
-            modelMap.addAttribute("message", "Enregistrement reussi");
-            return true;
+            mapModel.put("message", "Enregistrement reussi");
+            return mapModel;
         } else {
             StringBuffer sb = new StringBuffer("enregistrement non approuvé");
             mapError.forEach((k, v) -> {
                 sb.append(", ");
                 sb.append(v);
             });
-            modelMap.addAttribute("error", sb.toString());
+            mapModel.put("error", sb.toString());
         }
-        return false;
+        return mapModel;
     }
 
     /**
@@ -190,6 +191,10 @@ public class UserService {
      */
     public boolean isAtLeastAssociationLevel(Principal principal) {
         User user = getUserFromPrincipalAndDB(principal);
+        return isAtLeastAssociationLevelFromUser(user);
+    }
+
+    public boolean isAtLeastAssociationLevelFromUser(User user) {
         if (user == null) return false;
         RoleEnum role = RoleEnum.getRole(user.getRole());
         if (role != null && RoleEnum.ROLE_ASSO.getNum() <= role.getNum()) return true;

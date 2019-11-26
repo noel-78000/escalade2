@@ -79,8 +79,9 @@ public class TopoService {
 
     /**
      * get the topo if the user is the owner
+     *
      * @param topoId the id of topo
-     * @param user the owner
+     * @param user   the owner
      * @return a topo of the user, otherwise null
      */
     public Topo getTopo(Integer topoId, User user) {
@@ -105,8 +106,9 @@ public class TopoService {
 
     /**
      * delete topo with all resa from it
+     *
      * @param topoId the id of the topo
-     * @param user the user who is the owner of the topo
+     * @param user   the user who is the owner of the topo
      * @return true if all is ok otherwise false
      */
     @Transactional

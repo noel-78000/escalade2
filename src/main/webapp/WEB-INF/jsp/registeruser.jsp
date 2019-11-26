@@ -6,13 +6,13 @@
     <fieldset>
         <legend>S'engegistrer</legend>
         <label for="email">email</label>
-        <input type="text" id="email" name="email"/><br/>
+        <input type="text" id="email" name="email" value="${param.email}"/><br/>
         <label for="password">Mot de passe</label>
         <input type="password" id="password" name="password"/><br/>
         <label for="passwordconfirm">Confirmer le mot de passe</label>
         <input type="password" id="passwordconfirm" name="passwordconfirm"/><br/>
         <label for="firstname">Prénom</label>
-        <input type="text" id="firstname" name="firstname"/><br/>
+        <input type="text" id="firstname" name="firstname" value="${param.firstname}"/><br/>
         <label for="lastname">Nom</label>
         <input type="text" id="lastname" name="lastname" value="${param.lastname}"/><br/>
         <div class="form-actions">

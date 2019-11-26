@@ -65,10 +65,10 @@ public class SiteService {
     }
 
     @Transactional
-    public void deleteById(Integer id, Principal principal) {
-        if (userService.isAtLeastAssociationLevel(principal)) {
+    public void deleteById(Integer id, boolean isAtLeastAssociationLevel) {
+        if (isAtLeastAssociationLevel) {
             List<Commentaire> comments = commentaireService.findAllBySiteIdFetchUser(id);
-            comments.forEach(c -> commentaireService.delete(c.getId(), principal));
+            comments.forEach(c -> commentaireService.delete(c.getId()));
             siteRepository.deleteById(id);
         }
     }
@@ -84,14 +84,14 @@ public class SiteService {
     }
 
     @Transactional
-    public boolean updateSite(Integer id, String lieu, String nom, String tag, Principal principal) {
+    public boolean updateSite(Integer id, String lieu, String nom, String tag, User user) {
         Site site = findById(id);
         if (site == null) {
             return false;
         }
         if (lieu != null && lieu.length() > 0 && lieu.length() <= 100) site.setLieu(lieu);
         if (nom != null && nom.length() > 0 && nom.length() <= 100) site.setNom(nom);
-        boolean isAtAssoLevel = userService.isAtLeastAssociationLevel(principal);
+        boolean isAtAssoLevel = userService.isAtLeastAssociationLevelFromUser(user);
         if (isAtAssoLevel) {
             if ("yes".equals(tag)) site.setTag(true);
             else site.setTag(false);
@@ -101,13 +101,13 @@ public class SiteService {
     }
 
     @Transactional
-    public Site add(String lieu, String nom, String siteOfficialTag, Principal principal) {
+    public Site add(String lieu, String nom, String siteOfficialTag, User user) {
         if (lieu != null && lieu.length() > 0 && lieu.length() <= 100
             && nom != null && nom.length() > 0 && nom.length() <= 100) {
             Site site = new Site();
             site.setLieu(lieu);
             site.setNom(nom);
-            boolean isAtAssoLevel = userService.isAtLeastAssociationLevel(principal);
+            boolean isAtAssoLevel = userService.isAtLeastAssociationLevelFromUser(user);
             if (isAtAssoLevel) {
                 if ("yes".equals(siteOfficialTag)) site.setTag(true);
                 else site.setTag(false);

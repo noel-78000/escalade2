@@ -9,10 +9,10 @@
         <c:if test="${isassolevel}">
             <p>
                 <a href="${pageContext.request.contextPath}/comment/delete?id=${commentaire.id}&siteid=${siteid}">
-                    <span><spring:message code="button.submit.delete"/>"</span>
+                    <span><spring:message code="button.submit.delete"/></span>
                 </a>&nbsp
                 <a href="${pageContext.request.contextPath}/comment/change?id=${commentaire.id}&siteid=${siteid}">
-                    <span><spring:message code="button.submit.change"/>"</span>
+                    <span><spring:message code="button.submit.change"/></span>
                 </a>
             </p>
         </c:if>
