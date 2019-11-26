@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <c:if test="${ !empty site }">
-    <h3>Cliquer sur ce que vous voulez modifier:</h3>
+    <h3><spring:message code="clic.to.change"/>:</h3>
     <p>
         <a href="${pageContext.request.contextPath}/site/change?id=${site.id}">
             <c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out>
