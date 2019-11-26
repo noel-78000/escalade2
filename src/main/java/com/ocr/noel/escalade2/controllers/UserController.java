@@ -58,7 +58,9 @@ public class UserController {
 
     @RequestMapping(value = "/moncompte", method = RequestMethod.GET)
     public String monCompte(Principal principal, ModelMap modelMap) {
-        userService.getHtmlFormMonCompte(principal, modelMap);
+        User user = userService.getUserFromPrincipalAndDB(principal);
+        Map<String, String> mapCompte = userService.getMapFormMonCompte(user);
+        modelMap.addAllAttributes(mapCompte);
         return "moncompte";
     }
 
@@ -74,9 +76,11 @@ public class UserController {
                                  @RequestParam(required = false) String zipcode,
                                  @RequestParam(required = false) String country,
                                  Principal principal, ModelMap modelMap) {
-        boolean registrationOK = userService.updateUserInformation(email, password, passwordconfirm, firstname, lastname,
-                phonenumber, address, city, zipcode, country, principal, modelMap);
-        if (registrationOK) {
+        User user = userService.getUserFromPrincipalAndDB(principal);
+        Map<String, String> map = userService.updateUserInformation(email, password, passwordconfirm, firstname, lastname,
+                phonenumber, address, city, zipcode, country, user);
+        modelMap.addAllAttributes(map);
+        if (!map.containsKey("errorOccurred")) {
             modelMap.addAttribute("message", messageSourceService.getMessage("registration.ok"));
         } else {
             modelMap.addAttribute("error", messageSourceService.getMessage("registration.nok"));

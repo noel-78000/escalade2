@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.ModelMap;
 
 import java.security.Principal;
 import java.util.HashMap;
@@ -127,27 +126,29 @@ public class UserService {
         return userDB;
     }
 
-    public void getHtmlFormMonCompte(Principal principal, ModelMap modelMap) {
-        User user = getUserFromPrincipalAndDB(principal);
-        modelMap.addAttribute("email", user.getEmail());
-        modelMap.addAttribute("firstname", user.getFirstName());
-        modelMap.addAttribute("lastname", user.getLastName());
-        modelMap.addAttribute("phonenumber", user.getPhonenumber());
+    public Map<String, String> getMapFormMonCompte(User user) {
+        Map<String, String> map = new HashMap<>();
+        map.put("email", user.getEmail());
+        map.put("firstname", user.getFirstName());
+        map.put("lastname", user.getLastName());
+        map.put("phonenumber", user.getPhonenumber());
         Address address = user.getAddress();
         if (address != null) {
-            modelMap.addAttribute("address", address.getAddress());
-            modelMap.addAttribute("city", address.getCity());
-            modelMap.addAttribute("zipcode", address.getZipcode());
-            modelMap.addAttribute("country", address.getCountry());
+            map.put("address", address.getAddress());
+            map.put("city", address.getCity());
+            map.put("zipcode", address.getZipcode());
+            map.put("country", address.getCountry());
         }
+        return map;
     }
 
-    public boolean updateUserInformation(String email, String password, String passwordconfirm, String firstname,
+    public Map<String, String> updateUserInformation(String email, String password, String passwordconfirm, String firstname,
                                          String lastname, String phonenumber, String address, String city,
-                                         String zipcode, String country, Principal principal, ModelMap modelMap) {
-        boolean isOk = true;
-        User user = getUserFromPrincipalAndDB(principal);
-        if (user == null) return false;
+                                         String zipcode, String country, User user) {
+        Map<String, String> map = new HashMap<>();
+        if (user == null) {
+            map.put("errorOccurred","errorOccurred");
+        }
         if (email != null && email.length() > 0 && !isExistingEmail(email)) {
             user.setEmail(email);
         }
@@ -155,8 +156,8 @@ public class UserService {
             if (password.length() <= 100 && password.equals(passwordconfirm)) {
                 user.setPwd(password);
             } else {
-                modelMap.addAttribute("passworderror", "erreur");
-                isOk = false;
+                map.put("errorOccurred","errorOccurred");
+                map.put("passworderror", "erreur");
             }
         }
         if (firstname != null && firstname.length() > 0 && firstname.length() <= 50) user.setFirstName(firstname);
@@ -172,15 +173,16 @@ public class UserService {
         if (city != null && city.length() > 0 && city.length() <= 50) user.getAddress().setCity(city);
         if (zipcode != null && zipcode.length() > 0 && zipcode.length() <= 5) user.getAddress().setZipcode(zipcode);
         if (country != null && country.length() > 0 && country.length() <= 50) user.getAddress().setCountry(country);
+        Map<String, String> mapCompte = getMapFormMonCompte(user);
+        map.putAll(mapCompte);
         Map<String, String> mapError = validateObjectService.validate(user);
         if (mapError.size() == 0) {
             save(user);
-            getHtmlFormMonCompte(principal, modelMap);
         } else {
-            getHtmlFormMonCompte(principal, modelMap);
-            return false;
+            map.put("errorOccurred","errorOccurred");
+            return map;
         }
-        return isOk;
+        return map;
     }
 
     /**
