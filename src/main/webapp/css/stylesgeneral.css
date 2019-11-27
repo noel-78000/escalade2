@@ -4,8 +4,7 @@
     margin: auto;
     text-align: center;
 }
-.monCadre
-{
+.monCadre {
     border: 1px red solid;
     border-radius: 20px / 15px;
     box-shadow: 10px 10px 10px Black;
@@ -21,24 +20,30 @@
 .showOnPhoneOnly {
     display: none;
 }
-.flottantRight
-{
+.flottantRight {
     float: right;
 }
-.plusFlottant
-{
+.plusFlottant {
     clear: right;
 }
+.alignRightOnLg {
+    text-align: right;
+}
+.alignCenter {
+    text-align: center;
+}
 
-@media screen and (max-width: 800px) {
-    .hideOnPhone{
+@media screen and (max-width: 992px) {
+    .hideOnPhone {
         display: none;
     }
     .showOnPhoneOnly {
         display: block;
     }
-    .monCadre
-    {
+    .alignRightOnLg {
+        text-align: left;
+    }
+    .monCadre {
         border: 1px red solid;
         border-radius: 20px / 15px;
         box-shadow: 5px 5px 5px Black;

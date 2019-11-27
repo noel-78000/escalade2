@@ -5,7 +5,7 @@
         <legend><spring:message code="search"/></legend>
             <div class="row">
                 <label class="col-xl-2 col-lg-3 col-md-4 col-sm-5" for="lieu"><spring:message code="place"/> :</label>
-                <input class="col-xl-4 col-lg-6 col-md-8 col-sm-7" type="text" name="lieu" id="lieu" placeholder="<spring:message code="place"/>" size="10" maxlength="100" autofocus="" />
+                <input class="col-xl-4 col-lg-6 col-md-8 col-sm-7" type="text" name="lieu" id="lieu" placeholder="<spring:message code="place"/>" maxlength="100" autofocus="" />
             </div>
             <div class="row">
                 <label class="col-xl-2 col-lg-3 col-md-4 col-sm-5" for="nombredesecteurs"><spring:message code="nber.sectors"/> :</label>
@@ -13,7 +13,7 @@
             </div>
             <div class="row">
                 <label class="col-xl-2 col-lg-3 col-md-4 col-sm-5" for="cotation"><spring:message code="cotation"/> :</label>
-                <input class="col-xl-4 col-lg-6 col-md-8 col-sm-7" type="text" name="cotation" id="cotation" size="3" maxlength="3" placeholder="<spring:message code="cotation"/>">
+                <input class="col-xl-4 col-lg-6 col-md-8 col-sm-7" type="text" name="cotation" id="cotation" maxlength="3" placeholder="<spring:message code="cotation"/>">
             </div>
             <div class="row">
                 <input class="boutonStyled" type="submit" value="<spring:message code="button.submit.search"/>">
@@ -27,17 +27,17 @@
     <c:forEach items="${sitessommaire}" var="sitesommaire" varStatus="status">
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 col-lg-6 col-md-8 col-sm-9 col-xm-12">
+                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-9">
                     <p>
                     <a href="${pageContext.request.contextPath}/search/site?id=${sitesommaire.id}">
-                        N°<c:out value="${ status.count }" /> : <c:out value="${sitesommaire.nom}"></c:out>, <c:out value="${sitesommaire.lieu}"></c:out>
+                        N°${ status.count } : <c:out value="${sitesommaire.nom}"></c:out>, <c:out value="${sitesommaire.lieu}"></c:out>
                     </a>
                     <c:if test="${sitesommaire.tag}">
                         <img src="${pageContext.request.contextPath}/img/logoTag.png"/>
                     </c:if>
                     </p>
                 </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-3 col-xm-12">
+                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-3">
                     <a href="${pageContext.request.contextPath}/site/details?id=${sitesommaire.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a>
                     <a href="${pageContext.request.contextPath}/comment/list?id=${sitesommaire.id}"><span style="font-size: 0.8em">(<spring:message code="comment.see"/>)</span></a>
                 </div>
@@ -58,17 +58,19 @@
     <div class="container">
         <div class="row">
             <c:forEach items="${ sites }" var="site" varStatus="status">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
+                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-6">
                     N°<c:out value="${ status.count }" /> : <c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out>
                     <c:if test="${site.tag}">
                         <img src="${pageContext.request.contextPath}/img/logoTag.png"/>
                     </c:if>
+                </div>
+                <div class="col-xl-8 col-lg-7 col-md-6 col-sm-6">
                     <a href="${pageContext.request.contextPath}/site/details?id=${site.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a>
                     <a href="${pageContext.request.contextPath}/comment/list?id=${site.id}"><span style="font-size: 0.8em">(<spring:message code="comment.see"/>)</span></a>
                 </div>
                 <c:forEach items="${ site.secteurs }" var="secteur">
 
-                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-xm-12">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <c:out value="${ secteur.nom }"></c:out>
                     <c:forEach items="${ secteur.voies }" var="voie">
                         <c:out value="${ voie.nom }" ></c:out>
@@ -78,11 +80,16 @@
                     </c:forEach>
                 </div>
                 </c:forEach>
-                <br/>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <p>&nbsp;</p>
+                </div>
             </c:forEach>
-            <form method="get" action="${pageContext.request.contextPath}/site/add">
-                <input class="boutonStyled" type="submit" value="<spring:message code="add.new.site"/>">
-            </form>
+
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9">
+                <form method="get" action="${pageContext.request.contextPath}/site/add">
+                    <input class="boutonStyled" type="submit" value="<spring:message code="add.new.site"/>">
+                </form>
+            </div>
         </div>
     </div>
 </c:if>

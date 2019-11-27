@@ -8,7 +8,7 @@
         <c:if test="${param.logout != null}"><p><spring:message code="logout.ok"/>.</p></c:if>
             <div class="row">
                 <label class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xm-5" for="username"><spring:message code="login.username"/></label>
-                <input class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xm-7" type="text" id="username" name="username" autofocus/>
+                <input class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xm-7" type="email" id="username" name="username" autofocus autocomplete="off"/>
             </div>
 
             <div class="row">

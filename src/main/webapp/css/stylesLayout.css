@@ -12,7 +12,7 @@
     border-left: 1px solid pink;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 992px) {
     .menu {
         border: none;
         border-bottom: 1px solid black;

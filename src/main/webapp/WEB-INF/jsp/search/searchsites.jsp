@@ -9,9 +9,11 @@
 <c:if test="${ !empty site }">
     <div class="container">
         <div class="row">
-            <p><c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out>
+            <div class="col-lg-3 col-md-12"><c:out value="${site.nom}"></c:out>, <c:out value="${site.lieu}"></c:out>
                 <c:if test="${site.tag}"><img src="${pageContext.request.contextPath}/img/logoTag.png"/></c:if>
-            </p>
+            </div>
+            <div class="col-lg-1 col-md-0"></div>
+            <div class="col-lg-8 col-md-12">
             <c:forEach items="${ site.secteurs }" var="secteur">
                 <c:out value="${ secteur.nom }"></c:out>
                 <c:forEach items="${ secteur.voies }" var="voie">
@@ -22,6 +24,7 @@
                 </c:forEach>
                 <br/>
             </c:forEach>
+            </div>
         </>
     </div>
 </c:if>

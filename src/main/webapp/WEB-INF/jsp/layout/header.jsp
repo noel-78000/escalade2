@@ -2,7 +2,7 @@
     <c:if test="${isauth}">
         <div class="flottantRight hideOnPhone" id="firstAnLastName">
         <sec:authentication var="principal" property="principal" />
-        <p><spring:message code="goodmorning"/> ${principal.user.firstName} ${principal.user.lastName}</p>
+        <p><spring:message code="goodmorning"/> ${principal.user.firstName} ${principal.user.lastName}&nbsp;&nbsp;&nbsp;</p>
         </div>
     </c:if>
     <div class="centerBlocHead hideOnPhone">

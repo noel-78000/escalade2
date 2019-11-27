@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td>N° de téléphone:</td>
-            <td><input type="text" value="${phonenumber}" name="phonenumber" maxlength="10"/></td>
+            <td><input type="tel" value="${phonenumber}" name="phonenumber" maxlength="10"/></td>
         </tr>
         <tr>
             <td>Adresse:</td>
@@ -39,7 +39,7 @@
         </tr>
         <tr>
             <td>Code postal:</td>
-            <td><input type="text" value="${zipcode}" name="zipcode" maxlength="5"/></td>
+            <td><input type="tel" value="${zipcode}" name="zipcode" maxlength="5"/></td>
         </tr>
         <tr>
             <td>Pays:</td>
