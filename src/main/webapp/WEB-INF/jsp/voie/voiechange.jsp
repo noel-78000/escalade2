@@ -13,7 +13,7 @@
                 <input type="text" hidden value="${secteurid}" name="secteurid"/>
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6"><spring:message code="name.word"/>:</div>
-                        <input type="text" value="${voie.nom}" name="nom" autofocus/>
+                        <input class="col-xl-5 col-lg-5 col-md-5 col-sm-6" type="text" value="${voie.nom}" name="nom" autofocus/>
                 </div>
                 <div class="row"><div class="col-sm-12">&nbsp;</div></div>
                 <div class="row">
