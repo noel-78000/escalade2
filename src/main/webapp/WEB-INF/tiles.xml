@@ -19,12 +19,12 @@
 
     <definition name="login" extends="base.definition">
         <put-attribute name="title" value="Page d'authentification" />
-        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/user/login.jsp" />
     </definition>
 
     <definition name="listuser" extends="base.definition">
         <put-attribute name="title" value="List user escalade" />
-        <put-attribute name="body" value="/WEB-INF/jsp/listuser.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/user/listuser.jsp" />
     </definition>
 
     <definition name="searchhome" extends="base.definition">
@@ -39,12 +39,12 @@
 
     <definition name="registeruser" extends="base.definition">
         <put-attribute name="title" value="S'enregister" />
-        <put-attribute name="body" value="/WEB-INF/jsp/registeruser.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/user/registeruser.jsp" />
     </definition>
 
     <definition name="moncompte" extends="base.definition">
         <put-attribute name="title" value="Mon compte" />
-        <put-attribute name="body" value="/WEB-INF/jsp/moncompte.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/user/moncompte.jsp" />
     </definition>
 
     <definition name="sitedetails" extends="base.definition">
