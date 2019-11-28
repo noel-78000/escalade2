@@ -1,23 +1,49 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<h3>Veuillez vous inscrire!</h3>
-<h2>${message}</h2>
+<div class="container-fluid col-xl-6 col-lg-8 col-md-10 col-sm-12">
+    <div class="row">
+        <h3><spring:message code="registration.please"/></h3>
+    </div>
 <form name="f" th:action="@{/registeruser}" method="post">
     <fieldset>
-        <legend>S'engegistrer</legend>
-        <label for="email">email</label>
-        <input type="text" id="email" name="email" value="${param.email}"/><br/>
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password"/><br/>
-        <label for="passwordconfirm">Confirmer le mot de passe</label>
-        <input type="password" id="passwordconfirm" name="passwordconfirm"/><br/>
-        <label for="firstname">Prénom</label>
-        <input type="text" id="firstname" name="firstname" value="${param.firstname}"/><br/>
-        <label for="lastname">Nom</label>
-        <input type="text" id="lastname" name="lastname" value="${param.lastname}"/><br/>
-        <div class="form-actions">
-            <button type="submit" class="boutonStyled">Log in</button>
+        <legend><spring:message code="registration"/></legend>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-6"><spring:message code="email"/></div>
+            <input class="col-lg-7 col-md-7 col-sm-6" type="text" id="email" name="email" value="${param.email}"/>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-6"><spring:message code="password"/></div>
+            <input class="col-lg-7 col-md-7 col-sm-6" type="password" id="password" name="password"/>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-6"><spring:message code="password.confirm"/></div>
+            <input class="col-lg-7 col-md-7 col-sm-6" type="password" id="passwordconfirm" name="passwordconfirm"/>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-6"><spring:message code="fisrtname"/></div>
+            <input class="col-lg-7 col-md-7 col-sm-6" type="text" id="firstname" name="firstname" value="${param.firstname}"/>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-6"><spring:message code="lastname"/></div>
+            <input class="col-lg-7 col-md-7 col-sm-6" type="text" id="lastname" name="lastname" value="${param.lastname}"/>
+        </div>
+        <div class="row">
+            <div>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="container-fluid col-xs-12">
+                <div class="text-center">
+                    <button type="submit" class="boutonStyled"><spring:message code="button.submit.record"/></button>
+                </div>
+            </div>
         </div>
     </fieldset>
 </form>
-<c:if test="${ !empty error}"><p><c:out value="${error}"/></p></c:if>
+<c:if test="${ !empty error}">
+    <div class="row">
+        <div class="container-fluid col-xs-12">
+            <p class="text-center"><c:out value="${error}"/></p>
+        </div>
+    </div>
+</c:if>
+</div>
