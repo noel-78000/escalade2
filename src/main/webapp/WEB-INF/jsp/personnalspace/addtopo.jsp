@@ -15,8 +15,8 @@
         </div>
         <div class="row">&nbsp;</div>
         <div class="row">
-            <div class="col-lg-4 col-md-5 col-sm-6"><spring:message code="topo.pret.dispo"/>:</div>
-            <div class="col-lg-8 col-md-7 col-sm-6">
+            <div class="col-lg-4 col-md-5 col-sm-6 col-6"><spring:message code="topo.pret.dispo"/>:</div>
+            <div class="col-lg-8 col-md-7 col-sm-6 col-6">
                 <spring:message code="topo.yes"/>:<input type="radio" name="topopret" value="yes"/>
                 <spring:message code="topo.no"/>:<input type="radio" name="topopret" value="no"/>
             </div>

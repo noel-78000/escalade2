@@ -53,14 +53,16 @@ public class TopoResaService {
     public boolean setUpResa(Integer topoResaId, String acceptResa) {
         TopoResa topoResa = topoResaRepository.findById(topoResaId).orElse(null);
         if (topoResa == null) return false;
+        Topo topo = topoService.findById(topoResa.getTopo().getId());
+        if (topo == null) return false;
         if ("on".equals(acceptResa)) {
-            topoResa.setAcceptResa(true);
+            if (!topoResa.getAcceptResa()) {
+                topoResa.setAcceptResa(true);
+                topo.setDispoResa(false);
+            }
         } else {
             topoResa.setAcceptResa(false);
         }
-        Topo topo = topoService.findById(topoResa.getTopo().getId());
-        if (topo == null) return false;
-        topo.setDispoResa(false);
         topoService.save(topo);
         topoResaRepository.save(topoResa);
         return true;
