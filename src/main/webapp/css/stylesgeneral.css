@@ -5,11 +5,6 @@
     text-align: center;
 }
 .monBlocTable {
-    /*border: 1px red solid;
-    border-radius: 20px / 15px;
-    box-shadow: 10px 10px 10px Black;*/
-    /*width   : 200px;*/
-    /*min-width: 10%;*/
     display: flex;
     flex-wrap: wrap;/*passe à la ligne(sur l'axe secondaire) si besoin*/
     max-height  : 300px;
@@ -17,8 +12,6 @@
     overflow: auto;
     position: relative;
     z-index : 1;
-    /*padding: 10px 10px 10px 5px;/*marge interieur*/
-    /*margin: 10px 10px 10px 50px;/*marge exterieur*/
 }
 .monCadre {
     border: 1px red solid;
