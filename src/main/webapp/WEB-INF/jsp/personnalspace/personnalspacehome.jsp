@@ -1,27 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table>
-    <tr>
-        <td>
+<div class="container-fluid col-xl-8 col-lg-9 col-md-10 col-sm-12">
+    <div class="row">
+        <div class="col-sm-4">
             <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/add'">
                 <spring:message code="button.submit.topo.add"/>
             </button>
-        </td>
-        <td>
+        </div>
+        <div class="col-sm-4">
             <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/list'">
                 <spring:message code="button.submit.topo.list"/>
             </button>
-        </td>
-        <td>
+        </div>
+        <div class="col-sm-4">
             <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/myresas'">
                 <spring:message code="button.submit.topo.resa.list.mine"/>
             </button>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+</div>
 
 <c:if test="${!empty topoinfos}">
     <hr>
-    <table>
+    <table class="table table-striped table-bordered">
+
+        <thead>
+        <tr>
+            <th scope="col"><spring:message code="place.maj"/></th>
+            <th scope="col"><spring:message code="description"/></th>
+            <th scope="col" class="hideOnPhone"><spring:message code="publication"/></th>
+            <th scope="col"><spring:message code="available"/></th>
+            <th scope="col"><spring:message code="booked"/></th>
+        </tr>
+        </thead>
+        <tbody>
         <c:forEach items="${topoinfos}" var="topoinfo">
             <tr>
                 <td>
@@ -30,16 +41,16 @@
                     </a>
                 </td>
                 <td>
-                    <div class="centerBlocHead">
-                        <c:out value="${topoinfo.description}"/>
+                    <div class="monBlocTable">
+                        <p><c:out value="${topoinfo.description}"/></p>
                     </div>
                 </td>
-                <td>
+                <td class="hideOnPhone">
                      ${topoinfo.dtParutionFormated}
                 </td>
                 <td>
                     <input type="checkbox" id="disporesa" disabled="disabled" <c:if test="${topoinfo.dispoResa}">checked</c:if>/>
-                    <label for="disporesa"><spring:message code="topo.pret.dispo"/></label>
+                    <label class="hideOnPhone" for="disporesa"><spring:message code="topo.pret.dispo"/></label>
                 </td>
                 <td>
                     <c:forEach items="${topoinfo.topoResas}" var="toporesa">
@@ -50,5 +61,6 @@
                 </td>
             </tr>
         </c:forEach>
+        </tbody>
     </table>
 </c:if>

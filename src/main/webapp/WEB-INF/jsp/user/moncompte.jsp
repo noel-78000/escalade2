@@ -49,6 +49,9 @@
         <input class="col-lg-8 col-md-7 col-sm-6" type="text" value="${country}" name="country" maxlength="50"/>
     </div>
     <div class="row">
+        <div>&nbsp;</div>
+    </div>
+    <div class="row">
         <div class="container-fluid col-xs-12">
             <div class="text-center">
                 <input type="submit" class="boutonStyled" value="<spring:message code="button.submit.record"/>"/>
