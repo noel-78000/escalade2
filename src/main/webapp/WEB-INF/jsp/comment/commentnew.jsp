@@ -8,7 +8,7 @@
             <label class="col-xl-12 col-lg-12 col-md-12 col-sm-12" for="commentnew"><spring:message code="comment.your.comment"/> :</label><br/>
         </div>
         <div class="row">
-            <textarea class="col-xl-12 col-lg-12 col-md-12 col-sm-12" id="commentnew" name="commentnew" placeholder="<spring:message code="comment.write.your.comment"/>" maxlength="65535" autofocus><c:out value="${param.commentnew}"/></textarea>
+            <textarea class="col-xl-12 col-lg-12 col-md-12 col-sm-12" style="height: 300px" id="commentnew" name="commentnew" placeholder="<spring:message code="comment.write.your.comment"/>" maxlength="65535" autofocus><c:out value="${param.commentnew}"/></textarea>
         </div>
         <div class="row">&nbsp</div>
         <div class="row">

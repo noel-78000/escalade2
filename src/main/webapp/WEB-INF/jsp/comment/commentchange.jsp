@@ -8,7 +8,7 @@
             <label class="col-xl-12 col-lg-12 col-md-12 col-sm-12" for="commentchange"><spring:message code="comment.your.comment"/> :</label>
         </div>
         <div class="row">
-            <textarea class="col-xl-12 col-lg-12 col-md-12 col-sm-12" id="commentchange" name="commentchange" maxlength="65535" autofocus><c:out value="${comment.commentaire}"/></textarea>
+            <textarea class="col-xl-12 col-lg-12 col-md-12 col-sm-12" style="height: 300px" id="commentchange" name="commentchange" maxlength="65535" autofocus><c:out value="${comment.commentaire}"/></textarea>
         </div>
         <div class="row">&nbsp</div>
         <div class="row">

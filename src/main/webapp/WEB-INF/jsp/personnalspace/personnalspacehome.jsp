@@ -1,21 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="container-fluid col-xl-8 col-lg-9 col-md-10 col-sm-12">
-    <div class="row">
-        <div class="col-sm-4">
-            <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/add'">
-                <spring:message code="button.submit.topo.add"/>
-            </button>
-        </div>
-        <div class="col-sm-4">
-            <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/list'">
-                <spring:message code="button.submit.topo.list"/>
-            </button>
-        </div>
-        <div class="col-sm-4">
-            <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/myresas'">
-                <spring:message code="button.submit.topo.resa.list.mine"/>
-            </button>
-        </div>
+<div class="container-fluid col-xs-12">
+    <div class="text-center">
+        <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/add'">
+            <spring:message code="button.submit.topo.add"/>
+        </button>
+        <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/list'">
+            <spring:message code="button.submit.topo.list"/>
+        </button>
+        <button class="boutonStyled" onclick="window.location.href='${pageContext.request.contextPath}/personnalspace/topo/myresas'">
+            <spring:message code="button.submit.topo.resa.list.mine"/>
+        </button>
     </div>
 </div>
 

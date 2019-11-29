@@ -27,7 +27,7 @@
     <c:forEach items="${sitessommaire}" var="sitesommaire" varStatus="status">
         <div class="container">
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-9">
+                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-9 col-8">
                     <p>
                     <a href="${pageContext.request.contextPath}/search/site?id=${sitesommaire.id}">
                         N°${ status.count } : <c:out value="${sitesommaire.nom}"></c:out>, <c:out value="${sitesommaire.lieu}"></c:out>
@@ -37,7 +37,7 @@
                     </c:if>
                     </p>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-3">
+                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-3 col-4">
                     <a href="${pageContext.request.contextPath}/site/details?id=${sitesommaire.id}"><span style="font-size: 0.8em">(<spring:message code="change"/>)</span></a>
                     <a href="${pageContext.request.contextPath}/comment/list?id=${sitesommaire.id}"><span style="font-size: 0.8em">(<spring:message code="comment.see"/>)</span></a>
                 </div>
