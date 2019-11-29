@@ -10,7 +10,11 @@
             </div>
             <div class="row"><div class="col-sm-12">&nbsp;</div></div>
             <div class="row">
-                <input type="submit" class="boutonStyled" value="<spring:message code="button.submit.record"/>"/>
+                <div class="container-fluid col-xs-12">
+                    <div class="text-center">
+                        <input type="submit" class="boutonStyled" value="<spring:message code="button.submit.record"/>"/>
+                    </div>
+                </div>
             </div>
         </fieldset>
     </form>

@@ -17,14 +17,16 @@
             <input class="col-xl-5 col-lg-5 col-md-5 col-sm-6" type="text" value="${site.lieu}" name="lieu"/>
         </div>
         <c:if test="${isassolevel}">
+            <div class="row">&nbsp;</div>
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6"><spring:message code="official.association.site"/>:</div>
-                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-6">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-5"><spring:message code="official.association.site"/>:</div>
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-6 col-7">
                         <spring:message code="official.association.site.yes"/> <input type="radio" name="siteofficial" value="yes" <c:if test="${siteofficialistaged}">checked</c:if>/>
                         <spring:message code="official.association.site.no"/> <input type="radio" name="siteofficial" value="no" <c:if test="${!siteofficialistaged}">checked</c:if>/>
                 </div>
             </div>
         </c:if>
+        <div class="row">&nbsp;</div>
         <div class="row">
             <div class="col-md-3 col-sm-4">
                 <input formaction="${pageContext.request.contextPath}/site/change"
