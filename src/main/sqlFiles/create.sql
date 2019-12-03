@@ -1,4 +1,7 @@
-ALTER TABLE `user` DROP INDEX `index_email`;
+CREATE DATABASE  IF NOT EXISTS `escalade2`;
+USE `escalade2`;
+
+/*ALTER TABLE `user` DROP INDEX `index_email`;*/
 
 DROP TABLE IF EXISTS `commentaire`;
 DROP TABLE IF EXISTS `topo_resa`;
