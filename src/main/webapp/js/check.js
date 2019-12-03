@@ -37,9 +37,24 @@ function validateEmail(email) {
 function checkSearch() {
     let isOK = true;
     $('#errorFieldsSearch').attr('class', 'd-none');
-    if($('#lieu').val().length == 0 && $('#nombredesecteurs').val().length == 0 && $('#cotation').val().length == 0) {
+    if ($('#lieu').val().length == 0 && $('#nombredesecteurs').val().length == 0 && $('#cotation').val().length == 0) {
         isOK = false;
         $('#errorFieldsSearch').removeClass('d-none');
+    }
+    return isOK;
+}
+
+function checkLogin() {
+    let isOK = true;
+    $('#erroremail').attr('class', 'd-none');
+    if (!validateEmail($('#username').val().toLowerCase())) {
+        isOK = false;
+        $('#erroremail').removeClass('d-none');
+    }
+    $('#errorpassword').attr('class', 'd-none');
+    if ($('#password').val().length < 4) {
+        isOK = false;
+        $('#errorpassword').removeClass('d-none');
     }
     return isOK;
 }
