@@ -22,7 +22,7 @@ INSERT INTO `user` VALUES (5,'user4@yahoo.fr','Michael','Dupuis','1234','0132563
 INSERT INTO `user` VALUES (6,'user5@yahoo.fr','Thierry','Hoareau','1234','0785696547',1,6);
 INSERT INTO `user` VALUES (7,'user6@yahoo.fr','François','Labois','1234','0696354759',1,7);
 INSERT INTO `user` VALUES (8,'asso1@yahoo.fr','Eric','Lundel','1234','0736254569',2,8);
-INSERT INTO `user` VALUES (9,'asso2@yahoo.fr','Raphaël','mantoux','1234','0624530120',2,9);
+INSERT INTO `user` VALUES (9,'asso2@yahoo.fr','Raphaël','Mantoux','1234','0624530120',2,9);
 UNLOCK TABLES;
 
 
