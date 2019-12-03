@@ -33,3 +33,13 @@ function validateEmail(email) {
     let regexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regexp.test(email);
 }
+
+function checkSearch() {
+    let isOK = true;
+    $('#errorFieldsSearch').attr('class', 'd-none');
+    if($('#lieu').val().length == 0 && $('#nombredesecteurs').val().length == 0 && $('#cotation').val().length == 0) {
+        isOK = false;
+        $('#errorFieldsSearch').removeClass('d-none');
+    }
+    return isOK;
+}

@@ -1,22 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="${pageContext.request.contextPath}/js/check.js"></script>
 <form method="post" action="${pageContext.request.contextPath}/search">
     <div class="container">
     <fieldset>
         <legend><spring:message code="search"/></legend>
             <div class="row">
-                <label class="col-xl-2 col-lg-3 col-md-4 col-sm-5" for="lieu"><spring:message code="place"/> :</label>
-                <input class="col-xl-4 col-lg-6 col-md-8 col-sm-7" type="text" name="lieu" id="lieu" placeholder="<spring:message code="place"/>" maxlength="100" autofocus="" />
+                <label class="col-xl-3 col-lg-3 col-md-4 col-sm-5" for="lieu"><spring:message code="place"/> :</label>
+                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="lieu" id="lieu" placeholder="<spring:message code="place"/>" maxlength="100" autofocus="" />
             </div>
             <div class="row">
-                <label class="col-xl-2 col-lg-3 col-md-4 col-sm-5" for="nombredesecteurs"><spring:message code="nber.sectors"/> :</label>
-                <input class="col-xl-4 col-lg-6 col-md-8 col-sm-7" type="text" name="nombredesecteurs" id="nombredesecteurs" placeholder="<spring:message code="nber.sectors"/>">
+                <label class="col-xl-3 col-lg-3 col-md-4 col-sm-5" for="nombredesecteurs"><spring:message code="nber.sectors"/> :</label>
+                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="nombredesecteurs" id="nombredesecteurs" placeholder="<spring:message code="nber.sectors"/>">
             </div>
             <div class="row">
-                <label class="col-xl-2 col-lg-3 col-md-4 col-sm-5" for="cotation"><spring:message code="cotation"/> :</label>
-                <input class="col-xl-4 col-lg-6 col-md-8 col-sm-7" type="text" name="cotation" id="cotation" maxlength="3" placeholder="<spring:message code="cotation"/>">
+                <label class="col-xl-3 col-lg-3 col-md-4 col-sm-5" for="cotation"><spring:message code="cotation"/> :</label>
+                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="cotation" id="cotation" maxlength="3" placeholder="<spring:message code="cotation"/>">
             </div>
+        <div id="errorFieldsSearch" class="d-none">
             <div class="row">
-                <input class="boutonStyled" type="submit" value="<spring:message code="button.submit.search"/>">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-1" >&nbsp;</div>
+                <p class="col-xl-5 col-lg-6 col-md-8 col-sm-7 col-10" style="color: red;"><spring:message code="error.need.atleast.one.field"/></p>
+            </div>
+        </div>
+            <div class="row">
+                <input class="boutonStyled" type="submit" onclick="return checkSearch();" value="<spring:message code="button.submit.search"/>">
             </div>
     </fieldset>
     </div>
