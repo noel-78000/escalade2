@@ -6,15 +6,15 @@
         <legend><spring:message code="search"/></legend>
             <div class="row">
                 <label class="col-xl-3 col-lg-3 col-md-4 col-sm-5" for="lieu"><spring:message code="place"/> :</label>
-                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="lieu" id="lieu" placeholder="<spring:message code="place"/>" maxlength="100" autofocus="" />
+                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="lieu" id="lieu" value="${param.lieu}" placeholder="<spring:message code="place"/>" maxlength="100" autofocus="" />
             </div>
             <div class="row">
                 <label class="col-xl-3 col-lg-3 col-md-4 col-sm-5" for="nombredesecteurs"><spring:message code="nber.sectors"/> :</label>
-                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="nombredesecteurs" id="nombredesecteurs" placeholder="<spring:message code="nber.sectors"/>">
+                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="nombredesecteurs" id="nombredesecteurs" value="${param.nombredesecteurs}" placeholder="<spring:message code="nber.sectors"/>">
             </div>
             <div class="row">
                 <label class="col-xl-3 col-lg-3 col-md-4 col-sm-5" for="cotation"><spring:message code="cotation"/> :</label>
-                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="cotation" id="cotation" maxlength="3" placeholder="<spring:message code="cotation"/>">
+                <input class="col-xl-5 col-lg-6 col-md-8 col-sm-7" type="text" name="cotation" id="cotation" maxlength="3" value="${param.cotation}" placeholder="<spring:message code="cotation"/>">
             </div>
         <div id="errorFieldsSearch" class="d-none">
             <div class="row">

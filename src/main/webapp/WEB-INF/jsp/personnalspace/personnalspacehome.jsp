@@ -15,7 +15,7 @@
 
 <c:if test="${!empty topoinfos}">
     <hr>
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered table-hover">
 
         <thead>
         <tr>

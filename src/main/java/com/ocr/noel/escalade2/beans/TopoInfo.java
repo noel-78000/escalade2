@@ -56,7 +56,7 @@ public class TopoInfo {
     }
 
     public String getDtParutionFormated() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return dtParution.format(formatter);
     }
 
