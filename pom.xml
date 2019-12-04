@@ -17,7 +17,71 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring.version>5.2.1.RELEASE</spring.version>
         <tiles.version>3.0.8</tiles.version>
+        <confDirectory>/usr/local/conf</confDirectory>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>prodEnv</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <!--
+                                        <copy todir="${project.build.outputDirectory}/${confDirectory}">
+                                            <fileset dir="${project.build.outputDirectory}"/>
+                                            <globmapper from="*.prod.properties" to="*.properties"/>
+                                        </copy>-->
+                                        <copy todir="${confDirectory}">
+                                            <fileset dir="${project.build.outputDirectory}"/>
+                                            <globmapper from="*.properties" to="*.properties"/>
+                                        </copy>
+                                        <delete>
+                                            <fileset dir="${project.build.outputDirectory}" includes="*.properties" />
+                                        </delete>
+
+                                        <!--<copy todir="${project.build.outputDirectory}">
+                                            <fileset dir="${project.build.outputDirectory}/${confDirectory}"/>
+                                            <globmapper from="*.properties" to="*.properties"/>
+                                        </copy>-->
+
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <classifier>test</classifier>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
