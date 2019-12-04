@@ -9,22 +9,30 @@
                     <c:if test="${site.tag}"><img src="${pageContext.request.contextPath}/img/logoTag.png"/></c:if>
                 </a>
             </div>
-            <div class="col-lg-1 col-sm-1"></div>
+            <div class="col-lg-1 col-sm-1">&nbsp;</div>
             <div class="col-lg-6 col-sm-5">
             <c:forEach items="${ site.secteurs }" var="secteur">
                 <a href="${pageContext.request.contextPath}/secteur/change?id=${secteur.id}&siteid=${site.id}">
                     <c:out value="${ secteur.nom }"></c:out>
                 </a>,
+                <ul>
                 <c:forEach items="${ secteur.voies }" var="voie">
+                    <li>
                     <a href="${pageContext.request.contextPath}/voie/change?id=${voie.id}&siteid=${site.id}">
                         <c:out value="${ voie.nom }" ></c:out>
                     </a>,
+                    </li>
+                    <ul>
                     <c:forEach items="${ voie.longueurs }" var="longueur">
+                        <li>
                         <a href="${pageContext.request.contextPath}/longueur/change?id=${longueur.id}&siteid=${site.id}">
                         cot: <c:out value="${ longueur.cotation }"></c:out>
                         </a>,
+                        </li>
                     </c:forEach>
+                    </ul>
                 </c:forEach>
+                </ul>
                 <br/>
             </c:forEach>
             </div>

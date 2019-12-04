@@ -1,6 +1,5 @@
 ## site web escalade
 
-
 ## comment compiler
 
 * __installer maven & mysql sur votre systeme__<br/>

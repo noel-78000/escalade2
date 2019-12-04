@@ -9,7 +9,7 @@
 <c:forEach  items="${commentaires}" var="commentaire" varStatus="status">
     <div class="monCadre">
         <p style="font-size: 0.8em">${commentaire.user.firstName} ${commentaire.user.lastName}</p>
-        <p>${commentaire.commentaire}</p>
+        <pre>${commentaire.commentaire}</pre>
         <c:if test="${isassolevel}">
             <p>
                 <a href="${pageContext.request.contextPath}/comment/delete?id=${commentaire.id}&siteid=${siteid}">
