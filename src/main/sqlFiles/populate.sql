@@ -9,6 +9,16 @@ INSERT INTO `address` VALUES (6,'91 boulevard jean houdan','paris','FRANCE','750
 INSERT INTO `address` VALUES (7,'14 rue du mont saint cric','paris','FRANCE','75007');
 INSERT INTO `address` VALUES (8,'92 avenue tireblanc','paris','FRANCE','75008');
 INSERT INTO `address` VALUES (9,'51 rue la promenade','paris','FRANCE','75009');
+INSERT INTO `address` VALUES (10,'74 rue Jules Aubert','paris','FRANCE','75010');
+INSERT INTO `address` VALUES (11,'11 avenue de la république','paris','FRANCE','75011');
+INSERT INTO `address` VALUES (12,'184 rue Jean Duchemin','paris','FRANCE','75012');
+INSERT INTO `address` VALUES (13,'2 place du Général de Gaulle','paris','FRANCE','75013');
+INSERT INTO `address` VALUES (14,'28 rue du maréchal Foch','paris','FRANCE','75014');
+INSERT INTO `address` VALUES (15,'61 avenue Juin','paris','FRANCE','75015');
+INSERT INTO `address` VALUES (16,'47 rue Petit','paris','FRANCE','75016');
+INSERT INTO `address` VALUES (17,'5 rue Quentin Durant','paris','FRANCE','75017');
+INSERT INTO `address` VALUES (18,'83 allé du grand chemin','paris','FRANCE','75018');
+INSERT INTO `address` VALUES (19,'14 rue couteyen','paris','FRANCE','75019');
 UNLOCK TABLES;
 
 
@@ -23,6 +33,16 @@ INSERT INTO `user` VALUES (6,'user5@yahoo.fr','Thierry','Hoareau','1234','078569
 INSERT INTO `user` VALUES (7,'user6@yahoo.fr','François','Labois','1234','0696354759',1,7);
 INSERT INTO `user` VALUES (8,'asso1@yahoo.fr','Eric','Lundel','1234','0736254569',2,8);
 INSERT INTO `user` VALUES (9,'asso2@yahoo.fr','Raphaël','Mantoux','1234','0624530120',2,9);
+INSERT INTO `user` VALUES (10,'user7@yahoo.fr','Bertrand','Dubois','1234','0624530120',1,10);
+INSERT INTO `user` VALUES (11,'user8@yahoo.fr','Christophe','Durant-Mantoux','1234','0624530120',1,11);
+INSERT INTO `user` VALUES (12,'user9@yahoo.fr','Daniel','Durouchoux','1234','0624530120',1,12);
+INSERT INTO `user` VALUES (13,'user10@yahoo.fr','Eliane','Chancelet','1234','0624530120',1,13);
+INSERT INTO `user` VALUES (14,'user11@yahoo.fr','Françoise','Wanter','1234','0624530120',1,14);
+INSERT INTO `user` VALUES (15,'user12@yahoo.fr','Georges','Kuruvin','1234','0624530120',1,15);
+INSERT INTO `user` VALUES (16,'user13@yahoo.fr','Henri','Jurique','1234','0624530120',1,16);
+INSERT INTO `user` VALUES (17,'user14@yahoo.fr','Isidore','Platon','1234','0624530120',1,17);
+INSERT INTO `user` VALUES (18,'user15@yahoo.fr','Justin','Kruman','1234','0624530120',1,18);
+INSERT INTO `user` VALUES (19,'user16@yahoo.fr','Karen','Elvan','1234','0624530120',1,19);
 UNLOCK TABLES;
 
 
