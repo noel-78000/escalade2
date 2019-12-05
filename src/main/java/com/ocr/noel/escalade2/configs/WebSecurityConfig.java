@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/moncompte").hasAnyRole("ASSO", "USER")
                 .antMatchers("/site/**", "voie/**", "longueur/**").hasAnyRole("ASSO", "USER")
                 .antMatchers("/comment/**").hasAnyRole("ASSO", "USER")
-                .antMatchers("/user/list", "/personnalspace/**").hasAnyRole("ASSO", "USER")
+                .antMatchers("/user/listpage", "/personnalspace/**").hasAnyRole("ASSO", "USER")
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin().loginPage("/login")

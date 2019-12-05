@@ -22,7 +22,7 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
     }
@@ -33,5 +33,4 @@ public class HomeController {
         modelMap.addAttribute("message", String.format(messageSourceService.getMessage("error.page"), statusCode));
         return "home";
     }
-
 }

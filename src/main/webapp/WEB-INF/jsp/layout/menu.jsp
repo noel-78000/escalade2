@@ -10,7 +10,7 @@
             <li><a href="${pageContext.request.contextPath}/logout"><spring:message code="menu.logout"/></a> </li>
             <li><a href="${pageContext.request.contextPath}/user/moncompte"><spring:message code="menu.account"/></a></li>
             <li><a href="${pageContext.request.contextPath}/personnalspace"><spring:message code="menu.personnal.space"/></a></li>
-            <li><a href="${pageContext.request.contextPath}/user/list"><spring:message code="menu.user.list"/></a> </li>
+            <li><a href="${pageContext.request.contextPath}/user/listpage"><spring:message code="menu.user.list"/></a> </li>
         </c:if>
         <li><a href="${pageContext.request.contextPath}/search"><spring:message code="menu.search.and.change"/> </a> </li>
     </ul>
@@ -29,7 +29,7 @@
             <a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><spring:message code="menu.logout"/></a>
             <a class="dropdown-item" href="${pageContext.request.contextPath}/user/moncompte"><spring:message code="menu.account"/></a>
             <a class="dropdown-item" href="${pageContext.request.contextPath}/personnalspace"><spring:message code="menu.personnal.space"/></a>
-            <a class="dropdown-item" href="${pageContext.request.contextPath}/user/list"><spring:message code="menu.user.list"/></a>
+            <a class="dropdown-item" href="${pageContext.request.contextPath}/user/listpage"><spring:message code="menu.user.list"/></a>
         </c:if>
         <a class="dropdown-item" href="${pageContext.request.contextPath}/search"><spring:message code="menu.search.and.change"/></a>
     </div>

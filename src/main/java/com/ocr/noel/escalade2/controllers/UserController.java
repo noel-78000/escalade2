@@ -4,6 +4,7 @@ import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.services.MessageSourceService;
 import com.ocr.noel.escalade2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +27,11 @@ public class UserController {
     @Autowired
     MessageSourceService messageSourceService;
 
-    @RequestMapping(value = "/list")
-    public String list(ModelMap modelMap) {
-        List<User> userList = userService.findAllUser();
-        modelMap.addAttribute("userList", userList);
+    @RequestMapping(value = "/listpage")
+    public String test(@RequestParam(value = "num", required = false, defaultValue = "0") Integer numPage,
+                       ModelMap modelMap) {
+        Page<User> userPage = userService.getPageableSorted(numPage, 5);
+        modelMap.addAttribute("userPage", userPage);
         return "listuser";
     }
 

@@ -5,6 +5,10 @@ import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.enums.RoleEnum;
 import com.ocr.noel.escalade2.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,11 +34,6 @@ public class UserService {
     @Transactional
     public void save(User user) {
         userRepository.save(user);
-    }
-
-    public List<User> findAllUser() {
-        List<User> users = userRepository.findAll();
-        return users;
     }
 
     public User findByIdFetchAddress(Integer id) {
@@ -201,5 +200,10 @@ public class UserService {
         RoleEnum role = RoleEnum.getRole(user.getRole());
         if (role != null && RoleEnum.ROLE_ASSO.getNum() <= role.getNum()) return true;
         return false;
+    }
+    public Page<User> getPageableSorted(Integer numPage, Integer nberInPage) {
+        PageRequest pageRq = PageRequest.of(numPage, nberInPage, Sort.by("lastName").ascending().and(Sort.by("firstName").ascending()));
+        Page<User> page = userRepository.findAll(pageRq);
+        return page;
     }
 }
