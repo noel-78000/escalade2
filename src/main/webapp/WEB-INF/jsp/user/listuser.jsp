@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="container">
+<div class="container-fluid col-xl-5 col-lg-6 col-md-7 col-sm-8">
     <button type="button" class="btn btn-secondary">
         <spring:message code="users.list"/>
     </button>

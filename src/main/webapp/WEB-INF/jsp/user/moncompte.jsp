@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="container-fluid col-xl-6 col-lg-7 col-md-9 col-sm-12">
+<div class="container-fluid col-xl-8 col-lg-10 col-md-11 col-sm-12">
 <div class="container">
 <form method="post" action="${pageContext.request.contextPath}/user/moncompte">
     <div class="row">

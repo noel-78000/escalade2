@@ -1,7 +1,7 @@
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="${pageContext.request.contextPath}/js/check.js"></script>
-<div class="container-fluid col-xl-6 col-lg-8 col-md-10 col-sm-12">
+<div class="container-fluid col-xl-8 col-lg-10 col-md-11 col-sm-12">
     <div class="row">
         <h3><spring:message code="registration.please"/></h3>
     </div>
