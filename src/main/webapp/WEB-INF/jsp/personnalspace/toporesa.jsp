@@ -33,12 +33,11 @@
             <div class="row">&nbsp;</div>
             <div class="row">
                 <div class="col-lg-4 col-md-5 col-sm-6 col-5">&nbsp;</div>
-                    <div class="col-lg-8 col-md-7 col-sm-6 col-7">
-                        <input formaction="${pageContext.request.contextPath}/personnalspace/toporesa/selected"
-                               class="boutonStyled" type="submit" value="<spring:message code="button.submit.record"/>" />
-                        <input onclick="window.location='${pageContext.request.contextPath}/personnalspace/'" formmethod="get"
-                               class="boutonStyled" type="button" value="<spring:message code="button.submit.cancel"/>" />
-                    </div>
+                <div class="col-lg-8 col-md-7 col-sm-6 col-7">
+                    <input formaction="${pageContext.request.contextPath}/personnalspace/toporesa/selected"
+                           class="boutonStyled" type="submit" value="<spring:message code="button.submit.record"/>" />
+                    <input onclick="window.location='${pageContext.request.contextPath}/personnalspace/'" formmethod="get"
+                           class="boutonStyled" type="button" value="<spring:message code="button.submit.cancel"/>" />
                 </div>
             </div>
         </fieldset>

@@ -29,6 +29,6 @@
                 <br/>
             </c:forEach>
             </div>
-        </>
+        </div>
     </div>
 </c:if>

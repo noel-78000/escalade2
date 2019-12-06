@@ -34,15 +34,20 @@
 
     <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
-<body>
-<sec:authorize access="isAuthenticated()">
-    <sec:authentication var="principal" property="principal" />
-    <c:set var="isauth" value="${true}" scope="request"/>
-</sec:authorize>
-<div><tiles:insertAttribute name="header" /></div>
-<div class="menu"><tiles:insertAttribute name="menu" /></div>
-<div class="body"><tiles:insertAttribute name="body" /></div>
-<div style="clear:both"><tiles:insertAttribute name="footer" /></div>
-
+<body class="bodyBg">
+    <sec:authorize access="isAuthenticated()">
+        <sec:authentication var="principal" property="principal" />
+        <c:set var="isauth" value="${true}" scope="request"/>
+    </sec:authorize>
+    <div>
+        <br/>
+        <br/>
+    </div>
+    <div class="container-fluid frameBg">
+        <div><tiles:insertAttribute name="header" /></div>
+        <div class="menu"><tiles:insertAttribute name="menu" /></div>
+        <div class="body"><tiles:insertAttribute name="body" /></div>
+        <div style="clear:both"><tiles:insertAttribute name="footer" /></div>
+    </div>
 </body>
 </html>
