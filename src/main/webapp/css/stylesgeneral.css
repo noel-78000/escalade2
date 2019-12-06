@@ -52,6 +52,7 @@
         text-align: left;
     }
     .monCadre {
+        word-wrap: break-word;
         border: 1px red solid;
         border-radius: 20px / 15px;
         box-shadow: 5px 5px 5px Black;

@@ -8,8 +8,8 @@
 </div>
 <c:forEach  items="${commentaires}" var="commentaire" varStatus="status">
     <div class="monCadre">
-        <p style="font-size: 0.8em">${commentaire.user.firstName} ${commentaire.user.lastName}</p>
-        <pre>${commentaire.commentaire}</pre>
+        <p style="font-size: 0.8em"><c:out value="${commentaire.user.firstName} ${commentaire.user.lastName}"/></p>
+        <p><c:out value="${commentaire.commentaire}"/></p>
         <c:if test="${isassolevel}">
             <p>
                 <a href="${pageContext.request.contextPath}/comment/delete?id=${commentaire.id}&siteid=${siteid}">
