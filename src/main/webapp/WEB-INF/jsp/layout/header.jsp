@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <script src="${pageContext.request.contextPath}/js/language.js"></script>
     <c:if test="${isauth}">
         <div class="flottantRight hideOnPhone" id="firstAnLastName">
         <sec:authentication var="principal" property="principal" />
@@ -11,13 +12,9 @@
     <div class="flottantRight hideOnPhone">
     <div class="container">
         <div class="row">
-            <a href="${pageContext.request.contextPath}/language?lang=fr">
-            <img src="${pageContext.request.contextPath}/img/drapeau-francais.jpg" class="imgLanguage"/>
-            </a>
-            <p>&nbsp;</p>
-            <a href="${pageContext.request.contextPath}/language?lang=en">
-            <img src="${pageContext.request.contextPath}/img/drapeau-anglais.png" class="imgLanguage" "/>
-            </a>
+            <img src="${pageContext.request.contextPath}/img/drapeau-francais.jpg" class="imgLanguage" id="refreshfrench1"/>
+            <p>&nbsp;&nbsp;&nbsp;</p>
+            <img src="${pageContext.request.contextPath}/img/drapeau-anglais.png" class="imgLanguage" id="refreshenglish1"/>
         </div>
     </div>
     </div>

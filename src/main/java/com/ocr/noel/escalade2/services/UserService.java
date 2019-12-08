@@ -12,10 +12,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.LocaleResolver;
 
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Service
@@ -26,6 +28,9 @@ public class UserService {
 
     @Autowired
     ValidateObjectService validateObjectService;
+
+    @Autowired
+    MessageSourceService messageSourceService;
 
     public User findById(Integer id) {
         return userRepository.findById(id).orElse(null);
@@ -69,21 +74,22 @@ public class UserService {
      * @param lastname        his last name
      * @return true if all is ok false otherwise
      */
-    public Map<String, String> setNewUser(String email, String password, String passwordconfirm, String firstname, String lastname) {
+    public Map<String, String> setNewUser(String email, String password, String passwordconfirm, String firstname,
+                                          String lastname, Locale locale) {
         Map<String, String> mapModel = new HashMap<>();
         if (isExistingEmail(email)) {
-            mapModel.put("error", "l'utilisateur existe déjà!");
+            mapModel.put("error", messageSourceService.getMessage("user.already.existing", locale));
             return mapModel;
         }
         User user = new User();
         if (password != null && password.equals(passwordconfirm)) {
             user.setPwd(password);
         } else {
-            mapModel.put("error", "les mots de passe ne correspondent pas!");
+            mapModel.put("error", messageSourceService.getMessage("passwords.donot.matching", locale));
             return mapModel;
         }
         if (firstname == null || firstname.length() < 1 || lastname == null || lastname.length() < 1) {
-            mapModel.put("error", "Nom et prénom demandés");
+            mapModel.put("error", messageSourceService.getMessage("expected.first.last.name", locale));
             return mapModel;
         }
         user.setEmail(email);
@@ -93,10 +99,10 @@ public class UserService {
         Map<String, String> mapError = validateObjectService.validate(user);
         if (mapError.size() == 0) {
             save(user);
-            mapModel.put("message", "Enregistrement reussi");
+            mapModel.put("message", messageSourceService.getMessage("registration.right", locale));
             return mapModel;
         } else {
-            StringBuffer sb = new StringBuffer("enregistrement non approuvé");
+            StringBuffer sb = new StringBuffer(messageSourceService.getMessage("registration.unagree", locale));
             mapError.forEach((k, v) -> {
                 sb.append(", ");
                 sb.append(v);

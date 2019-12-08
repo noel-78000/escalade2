@@ -15,6 +15,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.Locale;
 import java.util.Map;
 
 @Controller
@@ -51,7 +52,8 @@ public class UserController {
                           @RequestParam(required = true) String lastname,
                           HttpServletRequest request,
                           ModelMap modelMap) {
-        Map<String, String> map = userService.setNewUser(email, password, passwordconfirm, firstname, lastname);
+        Locale locale = localeResolver.resolveLocale(request);
+        Map<String, String> map = userService.setNewUser(email, password, passwordconfirm, firstname, lastname, locale);
         if (map.size() == 1 && !map.containsKey("error")) {
             modelMap.addAllAttributes(map);
             authWithHttpServletRequest(request, email, password);

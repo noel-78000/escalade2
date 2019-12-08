@@ -39,15 +39,11 @@
     <div class="col-2">&nbsp;</div>
     <div class="flottantRight showOnPhoneOnly">
     <div class="container">
-    <div class="row">
-    <a href="${pageContext.request.contextPath}/language?lang=fr">
-    <img src="${pageContext.request.contextPath}/img/drapeau-francais.jpg" class="imgLanguage"/>
-    </a>
-    <p>&nbsp;</p>
-    <a href="${pageContext.request.contextPath}/language?lang=en">
-    <img src="${pageContext.request.contextPath}/img/drapeau-anglais.png" class="imgLanguage"/>
-    </a>
-    </div>
+        <div class="row">
+            <img src="${pageContext.request.contextPath}/img/drapeau-francais.jpg" class="imgLanguage" id="refreshfrench2"/>
+            <p>&nbsp;&nbsp;&nbsp;</p>
+            <img src="${pageContext.request.contextPath}/img/drapeau-anglais.png" class="imgLanguage" id="refreshenglish2"/>
+        </div>
     </div>
     </div>
     </div>
