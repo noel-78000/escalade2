@@ -11,7 +11,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
@@ -33,6 +35,9 @@ public class PersonnalSpaceController {
 
     @Autowired
     MessageSourceService messageSourceService;
+
+    @Autowired
+    LocaleResolver localeResolver;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Principal principal,
@@ -57,14 +62,15 @@ public class PersonnalSpaceController {
                           @RequestParam("description") String description,
                           @RequestParam(value = "topopret", required = false) String topoPret,
                           Principal principal,
-                          ModelMap modelMap) {
+                          ModelMap modelMap,
+                          HttpServletRequest request) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         boolean isOK = topoService.add(user, lieu, description, topoPret);
         if (isOK) {
             String url = "/personnalspace";
             return "redirect:" + url;
         } else {
-            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error", localeResolver.resolveLocale(request)));
             return "addtopo";
         }
     }
@@ -85,14 +91,15 @@ public class PersonnalSpaceController {
                              @RequestParam("description") String description,
                              @RequestParam(value = "topopret", required = false) String topoPret,
                              Principal principal,
-                             ModelMap modelMap) {
+                             ModelMap modelMap,
+                             HttpServletRequest request) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         boolean isOK = topoService.updateTopo(topoId, lieu, description, topoPret, user);
         if (isOK) {
             String url = "/personnalspace";
             return "redirect:" + url;
         } else {
-            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error", localeResolver.resolveLocale(request)));
             Topo topo = topoService.getTopo(topoId, user);
             modelMap.addAttribute("topo", topo);
             return "changetopo";
@@ -102,14 +109,15 @@ public class PersonnalSpaceController {
     @RequestMapping(value = "/topo/delete", method = RequestMethod.POST)
     public String delteTopo(@RequestParam("topoid") Integer topoId,
                             Principal principal,
-                            ModelMap modelMap) {
+                            ModelMap modelMap,
+                            HttpServletRequest request) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         boolean isOK = topoService.deleteTopo(topoId, user);
         if (isOK) {
             String url = "/personnalspace";
             return "redirect:" + url;
         } else {
-            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error", localeResolver.resolveLocale(request)));
             Topo topo = topoService.getTopo(topoId, user);
             modelMap.addAttribute("topo", topo);
             return "changetopo";
@@ -128,24 +136,26 @@ public class PersonnalSpaceController {
     @RequestMapping(value = "/topo/resa", method = RequestMethod.POST)
     public String toporesa(@RequestParam("topoid") Integer topoId,
                            Principal principal,
-                           ModelMap modelMap) {
+                           ModelMap modelMap,
+                           HttpServletRequest request) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         boolean isOK = topoResaService.addResa(topoId, user);
         if (isOK) {
             String url = "/personnalspace";
             return "redirect:" + url;
         } else {
-            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error", localeResolver.resolveLocale(request)));
             return "listtopodispo";
         }
     }
 
     @RequestMapping(value = "/toporesa/selected", method = RequestMethod.GET)
     public String topoResaInfo(@RequestParam("toporesaid") Integer topoResaId,
-                               ModelMap modelMap) {
+                               ModelMap modelMap,
+                               HttpServletRequest request) {
         TopoResa topoResa = topoResaService.findByIdFetchUserFetchTopo(topoResaId);
         if (topoResa == null) {
-            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error", localeResolver.resolveLocale(request)));
         }
         modelMap.addAttribute("toporesa", topoResa);
         return "toporesa";
@@ -154,7 +164,8 @@ public class PersonnalSpaceController {
     @RequestMapping(value = "/toporesa/selected", method = RequestMethod.POST)
     public String topoResaSelected(@RequestParam("toporesaid") Integer topoResaId,
                                    @RequestParam(value = "acceptresa", required = false) String acceptResa,
-                                   ModelMap modelMap) {
+                                   ModelMap modelMap,
+                                   HttpServletRequest request) {
         boolean isOK = topoResaService.setUpResa(topoResaId, acceptResa);
         if (isOK) {
             String url = "/personnalspace";
@@ -162,7 +173,7 @@ public class PersonnalSpaceController {
         } else {
             TopoResa topoResa = topoResaService.findByIdFetchUserFetchTopo(topoResaId);
             modelMap.addAttribute("toporesa", topoResa);
-            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error", localeResolver.resolveLocale(request)));
             return "toporesa";
         }
     }
@@ -179,7 +190,8 @@ public class PersonnalSpaceController {
     @RequestMapping(value = "/toporesa/delete", method = RequestMethod.POST)
     public String deleteResa(@RequestParam("toporesaid") Integer topoResaId,
                              Principal principal,
-                             ModelMap modelMap) {
+                             ModelMap modelMap,
+                             HttpServletRequest request) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         boolean isOK = topoResaService.delete(topoResaId, user);
         List<TopoResa> topoResas = topoResaService.getForUserFetchTopoFetchUserTopo(user);
@@ -187,7 +199,7 @@ public class PersonnalSpaceController {
         if (isOK) {
             return "myresalist";
         } else {
-            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error", localeResolver.resolveLocale(request)));
             return "myresalist";
         }
     }

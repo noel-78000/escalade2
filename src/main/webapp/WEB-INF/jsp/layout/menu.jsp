@@ -15,9 +15,11 @@
         <li><a href="${pageContext.request.contextPath}/search"><spring:message code="menu.search.and.change"/> </a> </li>
     </ul>
 
+    <div class="container">
+    <div class="row">
     <div class="dropdown showOnPhoneOnly">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Menu
+    <spring:message code="menu"/>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="${pageContext.request.contextPath}/"><spring:message code="menu.accueil"/></a>
@@ -32,6 +34,22 @@
             <a class="dropdown-item" href="${pageContext.request.contextPath}/user/listpage"><spring:message code="menu.user.list"/></a>
         </c:if>
         <a class="dropdown-item" href="${pageContext.request.contextPath}/search"><spring:message code="menu.search.and.change"/></a>
+    </div>
+    </div>
+    <div class="col-2">&nbsp;</div>
+    <div class="flottantRight showOnPhoneOnly">
+    <div class="container">
+    <div class="row">
+    <a href="${pageContext.request.contextPath}/language?lang=fr">
+    <img src="${pageContext.request.contextPath}/img/drapeau-francais.jpg" class="imgLanguage"/>
+    </a>
+    <p>&nbsp;</p>
+    <a href="${pageContext.request.contextPath}/language?lang=en">
+    <img src="${pageContext.request.contextPath}/img/drapeau-anglais.png" class="imgLanguage"/>
+    </a>
+    </div>
+    </div>
+    </div>
     </div>
     </div>
     </nav>

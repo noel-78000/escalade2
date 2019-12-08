@@ -11,7 +11,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
@@ -27,6 +29,9 @@ public class CommentaireController {
 
     @Autowired
     private MessageSourceService messageSourceService;
+
+    @Autowired
+    LocaleResolver localeResolver;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(@RequestParam("id") Integer siteId,
@@ -93,14 +98,15 @@ public class CommentaireController {
                                 @RequestParam("commentid") Integer commentId,
                                 @RequestParam("commentchange") String comment,
                                 ModelMap modelMap,
-                                Principal principal) {
+                                Principal principal,
+                                HttpServletRequest request) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         boolean isOK = commentaireService.change(comment, commentId, user);
         if (isOK) {
             String url = "/comment/list?id=" + siteId;
             return "redirect:" + url;
         } else {
-            modelMap.addAttribute("error", messageSourceService.getMessage("error"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error", localeResolver.resolveLocale(request)));
             return "commentchange";
         }
     }

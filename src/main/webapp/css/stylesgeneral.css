@@ -43,6 +43,10 @@
 .frameBg {
     background-color: rgba(255, 255, 255, 0.9);
 }
+.imgLanguage {
+    height: 20px;
+    width: 30px;
+}
 
 @media screen and (max-width: 992px) {
     .hideOnPhone {

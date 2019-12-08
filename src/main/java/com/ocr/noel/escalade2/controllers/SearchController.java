@@ -10,7 +10,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -26,6 +28,9 @@ public class SearchController {
     @Autowired
     MessageSourceService messageSourceService;
 
+    @Autowired
+    LocaleResolver localeResolver;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String searchHomePage(ModelMap modelMap) {
         List<Site> sites = siteService.findAll();
@@ -37,10 +42,12 @@ public class SearchController {
     public String search(@RequestParam(required = false) String lieu,
                          @RequestParam(required = false) String nombredesecteurs,
                          @RequestParam(required = false) String cotation,
-                         ModelMap modelMap) {
+                         ModelMap modelMap,
+                         HttpServletRequest request) {
         List<Site> sites = searchService.search(lieu, nombredesecteurs, cotation);
         modelMap.addAttribute("sites", sites);
-        if (sites.size() == 0) modelMap.addAttribute("rechercheinfructueuse", messageSourceService.getMessage("recherche.infructueuse"));
+        if (sites.size() == 0)
+            modelMap.addAttribute("rechercheinfructueuse", messageSourceService.getMessage("recherche.infructueuse", localeResolver.resolveLocale(request)));
         return "searchhome";
     }
 

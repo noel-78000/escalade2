@@ -10,11 +10,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -26,6 +26,9 @@ public class UserController {
 
     @Autowired
     MessageSourceService messageSourceService;
+
+    @Autowired
+    LocaleResolver localeResolver;
 
     @RequestMapping(value = "/listpage")
     public String test(@RequestParam(value = "num", required = false, defaultValue = "0") Integer numPage,
@@ -77,15 +80,16 @@ public class UserController {
                                  @RequestParam(required = false) String city,
                                  @RequestParam(required = false) String zipcode,
                                  @RequestParam(required = false) String country,
-                                 Principal principal, ModelMap modelMap) {
+                                 Principal principal, ModelMap modelMap,
+                                 HttpServletRequest request) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         Map<String, String> map = userService.updateUserInformation(email, password, passwordconfirm, firstname, lastname,
                 phonenumber, address, city, zipcode, country, user);
         modelMap.addAllAttributes(map);
         if (!map.containsKey("errorOccurred")) {
-            modelMap.addAttribute("message", messageSourceService.getMessage("registration.ok"));
+            modelMap.addAttribute("message", messageSourceService.getMessage("registration.ok", localeResolver.resolveLocale(request)));
         } else {
-            modelMap.addAttribute("error", messageSourceService.getMessage("registration.nok"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("registration.nok", localeResolver.resolveLocale(request)));
         }
         return "moncompte";
     }

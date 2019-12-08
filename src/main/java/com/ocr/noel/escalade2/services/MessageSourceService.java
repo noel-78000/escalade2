@@ -5,15 +5,17 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 public class MessageSourceService {
 
     @Autowired
     MessageSource messageSource;
 
-    public String getMessage(String key) {
+    public String getMessage(String key, Locale locale) {
         try {
-            String value = messageSource.getMessage(key, null, null);
+            String value = messageSource.getMessage(key, null, locale);
             if (value != null) {
                 return value;
             }

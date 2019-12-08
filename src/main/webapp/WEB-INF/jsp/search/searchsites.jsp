@@ -21,7 +21,7 @@
                     <li><c:out value="${ voie.nom }" ></c:out></li>
                     <ul>
                     <c:forEach items="${ voie.longueurs }" var="longueur">
-                        <li>cot: <c:out value="${ longueur.cotation }"></c:out>,</li>
+                        <li>cot: <c:out value="${ longueur.cotation }"></c:out></li>
                     </c:forEach>
                     </ul>
                 </c:forEach>

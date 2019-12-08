@@ -6,8 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/")
@@ -16,9 +20,13 @@ public class HomeController {
     @Autowired
     MessageSourceService messageSourceService;
 
+    @Autowired
+    LocaleResolver localeResolver;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(ModelMap modelMap) {
-        modelMap.addAttribute("message", messageSourceService.getMessage("welcome"));
+    public String index(ModelMap modelMap,
+                        HttpServletRequest request) {
+        modelMap.addAttribute("message", messageSourceService.getMessage("welcome", localeResolver.resolveLocale(request)));
         return "home";
     }
 
@@ -30,7 +38,21 @@ public class HomeController {
     @RequestMapping(value = "appExceptionHandler")
     public String appExceptionHandler(HttpServletRequest request, ModelMap modelMap) {
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        modelMap.addAttribute("message", String.format(messageSourceService.getMessage("error.page"), statusCode));
+        modelMap.addAttribute("message", String.format(messageSourceService.getMessage("error.page", localeResolver.resolveLocale(request)), statusCode));
+        return "home";
+    }
+
+    @RequestMapping(value = "/language", method = RequestMethod.GET)
+    public String setLanguage(HttpServletRequest request,
+                              HttpServletResponse response,
+                              @RequestParam(value = "lang", required = false) String lang,
+                              ModelMap modelMap) {
+        if ("fr".equals(lang)) {
+            localeResolver.setLocale(request, response, Locale.FRENCH);
+        } else {
+            localeResolver.setLocale(request, response, Locale.ENGLISH);
+        }
+        modelMap.addAttribute("message", messageSourceService.getMessage("welcome", localeResolver.resolveLocale(request)));
         return "home";
     }
 }

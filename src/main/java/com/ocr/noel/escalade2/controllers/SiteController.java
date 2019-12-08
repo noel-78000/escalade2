@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -28,6 +29,9 @@ public class SiteController {
 
     @Autowired
     MessageSourceService messageSourceService;
+
+    @Autowired
+    LocaleResolver localeResolver;
 
     @RequestMapping(value = "/details", method = RequestMethod.GET)
     public String details(@RequestParam(required = true) Integer id, ModelMap modelMap) {
@@ -60,7 +64,7 @@ public class SiteController {
                                    HttpServletRequest request,
                                    ModelMap modelMap,
                                    Principal principal
-                                   ) {
+    ) {
         User user = userService.getUserFromPrincipalAndDB(principal);
         boolean isOK = siteService.updateSite(id, lieu, nom, siteOfficialTag, user);
         if (isOK) {
@@ -69,8 +73,8 @@ public class SiteController {
         } else {
             boolean isAssoLevel = userService.isAtLeastAssociationLevel(principal);
             modelMap.addAttribute("isassolevel", isAssoLevel);
-            modelMap.addAttribute("error", messageSourceService.getMessage("error.tying"));
-            if (siteOfficialTag != null ) {
+            modelMap.addAttribute("error", messageSourceService.getMessage("error.typing", localeResolver.resolveLocale(request)));
+            if (siteOfficialTag != null) {
                 modelMap.addAttribute("siteofficialistaged", true);
             }
             return "sitechange";
@@ -99,7 +103,7 @@ public class SiteController {
         } else {
             boolean isAssoLevel = userService.isAtLeastAssociationLevel(principal);
             modelMap.addAttribute("isassolevel", isAssoLevel);
-            modelMap.addAttribute("error", messageSourceService.getMessage("error.create.site"));
+            modelMap.addAttribute("error", messageSourceService.getMessage("error.create.site", localeResolver.resolveLocale(request)));
             return "addnewsite";
         }
     }
