@@ -2,6 +2,8 @@ package com.ocr.noel.escalade2.controllers;
 
 import com.ocr.noel.escalade2.services.MessageSourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,16 +45,15 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/language", method = RequestMethod.GET)
-    public String setLanguage(HttpServletRequest request,
-                              HttpServletResponse response,
-                              @RequestParam(value = "lang", required = false) String lang,
-                              ModelMap modelMap) {
+    public ResponseEntity<String> setLanguage(HttpServletRequest request,
+                                              HttpServletResponse response,
+                                              @RequestParam(value = "lang", required = false) String lang,
+                                              ModelMap modelMap) {
         if ("fr".equals(lang)) {
             localeResolver.setLocale(request, response, Locale.FRENCH);
         } else {
             localeResolver.setLocale(request, response, Locale.ENGLISH);
         }
-        modelMap.addAttribute("message", messageSourceService.getMessage("welcome", localeResolver.resolveLocale(request)));
-        return "home";
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 }
