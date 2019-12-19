@@ -6,8 +6,12 @@
     </button>
     <div class="row">&nbsp;</div>
     <c:if test="${!empty userPage}">
-        <c:forEach items="${userPage.content}" var="user">
-            <p> ${user.firstName} ${user.lastName} </p>
+        <input id="pagesize" type="tel" value="${userPage.content.size()}" hidden/>
+        <c:forEach items="${userPage.content}" var="user" varStatus="status">
+            <input id="userid${status.count}" type="tel" hidden value="${user.id}">
+            <p>
+                <span id="username${status.count}"> ${user.firstName} ${user.lastName} </span>
+            </p>
         </c:forEach>
         <c:if test="${userPage.hasPrevious()}">
             <button type="button" class="btn btn-success">

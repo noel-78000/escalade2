@@ -44,10 +44,11 @@
         <sec:authentication var="principal" property="principal" />
         <c:set var="isauth" value="${true}" scope="request"/>
     </sec:authorize>
-    <div>
+    <div class="hideOnPhone">
         <br/>
         <br/>
     </div>
+    <span id='tooltipmessage' class='divmouse' style="display: none;">this is a tooltipnoel</span>
     <div class="container-fluid frameBg">
         <div><tiles:insertAttribute name="header" /></div>
         <div class="menu"><tiles:insertAttribute name="menu" /></div>

@@ -1,5 +1,6 @@
 package com.ocr.noel.escalade2.controllers;
 
+import com.ocr.noel.escalade2.beans.UserInfo;
 import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.services.MessageSourceService;
 import com.ocr.noel.escalade2.services.UserService;
@@ -7,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.ServletException;
@@ -101,5 +100,15 @@ public class UserController {
             request.login(username, password);
         } catch (ServletException e) {
         }
+    }
+
+    @RequestMapping(value = "/info", method = RequestMethod.POST)
+    @ResponseBody
+    public UserInfo infoBubble(@RequestBody UserInfo userInfo,
+                             Principal principal,
+                             HttpServletRequest request) {
+        Locale locale = localeResolver.resolveLocale(request);
+        userInfo = userService.getUserInfo(userInfo.getId(), principal, locale);
+        return userInfo;
     }
 }

@@ -1,5 +1,6 @@
 package com.ocr.noel.escalade2.services;
 
+import com.ocr.noel.escalade2.beans.UserInfo;
 import com.ocr.noel.escalade2.entities.Address;
 import com.ocr.noel.escalade2.entities.User;
 import com.ocr.noel.escalade2.enums.RoleEnum;
@@ -212,5 +213,18 @@ public class UserService {
         PageRequest pageRq = PageRequest.of(numPage, nberInPage, Sort.by("lastName").ascending().and(Sort.by("firstName").ascending()));
         Page<User> page = userRepository.findAll(pageRq);
         return page;
+    }
+
+    public UserInfo getUserInfo(Integer id, Principal principal, Locale locale) {
+        UserInfo userInfo = new UserInfo();
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return userInfo;
+        }
+        userInfo.setId(user.getId());
+        userInfo.setFirstName(user.getFirstName());
+        userInfo.setLastName(user.getLastName());
+        userInfo.setIntroOfName(messageSourceService.getMessage("prefix.userinfo", locale));
+        return  userInfo;
     }
 }
