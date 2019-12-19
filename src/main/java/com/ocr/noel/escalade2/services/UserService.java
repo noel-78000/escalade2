@@ -208,6 +208,7 @@ public class UserService {
         return false;
     }
     public Page<User> getPageableSorted(Integer numPage, Integer nberInPage) {
+        if (numPage < 0) numPage = 0;
         PageRequest pageRq = PageRequest.of(numPage, nberInPage, Sort.by("lastName").ascending().and(Sort.by("firstName").ascending()));
         Page<User> page = userRepository.findAll(pageRq);
         return page;

@@ -1,9 +1,13 @@
 package com.ocr.noel.escalade2.configs;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,6 +18,11 @@ import java.util.Locale;
 
 @Configuration
 public class MessageSourceConfig implements WebMvcConfigurer {
+
+    private final static Logger log = LogManager.getLogger(MessageSourceConfig.class);
+
+    @Autowired
+    Environment env;
 
     @Bean
     public MessageSource messageSource() {
@@ -26,7 +35,13 @@ public class MessageSourceConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver lr = new CookieLocaleResolver();
-        lr.setDefaultLocale(Locale.FRENCH);
+        String defaultLanguage = env.getProperty("language.default");
+        if ("french".equals(defaultLanguage)) {
+            lr.setDefaultLocale(Locale.FRENCH);
+        } else {
+            lr.setDefaultLocale(Locale.ENGLISH);
+        }
+        log.info("default language is {}}", defaultLanguage);
         return lr;
     }
 
